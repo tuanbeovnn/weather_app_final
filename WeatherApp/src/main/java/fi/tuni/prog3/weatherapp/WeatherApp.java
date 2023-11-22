@@ -2,16 +2,12 @@ package fi.tuni.prog3.weatherapp;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import net.rgielen.fxweaver.core.FxWeaver;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.ConfigurableApplicationContext;
 
 
 /**
@@ -19,73 +15,36 @@ import javafx.stage.Stage;
  */
 public class WeatherApp extends Application {
 
-    @Override
-    public void start(Stage stage) {
-        
-        //Creating a new BorderPane.
-        BorderPane root = new BorderPane();
-        root.setPadding(new Insets(10, 10, 10, 10));
-        
-        //Adding HBox to the center of the BorderPane.
-        root.setCenter(getCenterVBox());
-        
-        //Adding button to the BorderPane and aligning it to the right.
-        var quitButton = getQuitButton();
-        BorderPane.setMargin(quitButton, new Insets(10, 10, 0, 10));
-        root.setBottom(quitButton);
-        BorderPane.setAlignment(quitButton, Pos.TOP_RIGHT);
-        
-        Scene scene = new Scene(root, 500, 700);                      
-        stage.setScene(scene);
-        stage.setTitle("WeatherApp");
-        stage.show();
+    private ConfigurableApplicationContext applicationContext;
+
+    public void setApplicationContext(ConfigurableApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
     }
 
-    public static void main(String[] args) {
-        launch();
+    @Override
+    public void init() {
+        String[] args = getParameters().getRaw().toArray(new String[0]);
+        this.applicationContext = new SpringApplicationBuilder()
+                .sources(WeatherSystemApplication.class)
+                .run(args);
     }
-    
-    private VBox getCenterVBox() {
-        //Creating an HBox.
-        VBox centerHBox = new VBox(10);
-        
-        //Adding two VBox to the HBox.
-        centerHBox.getChildren().addAll(getTopHBox(), getBottomHBox());
-        
-        return centerHBox;
+
+    @Override
+    public void start(Stage stage) {
+        try {
+            FxWeaver fxWeaver = applicationContext.getBean(FxWeaver.class);
+            Parent root = fxWeaver.loadView(PrimaryController.class);
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-    
-    private HBox getTopHBox() {
-        //Creating a VBox for the left side.
-        HBox leftHBox = new HBox();
-        leftHBox.setPrefHeight(330);
-        leftHBox.setStyle("-fx-background-color: #8fc6fd;");
-        
-        leftHBox.getChildren().add(new Label("Top Panel"));
-        
-        return leftHBox;
-    }
-    
-    private HBox getBottomHBox() {
-        //Creating a VBox for the right side.
-        HBox rightHBox = new HBox();
-        rightHBox.setPrefHeight(330);
-        rightHBox.setStyle("-fx-background-color: #b1c2d4;");
-        
-        rightHBox.getChildren().add(new Label("Bottom Panel"));
-        
-        return rightHBox;
-    }
-    
-    private Button getQuitButton() {
-        //Creating a button.
-        Button button = new Button("Quit");
-        
-        //Adding an event to the button to terminate the application.
-        button.setOnAction((ActionEvent event) -> {
-            Platform.exit();
-        });
-        
-        return button;
+
+    @Override
+    public void stop() {
+        this.applicationContext.close();
+        Platform.exit();
     }
 }
