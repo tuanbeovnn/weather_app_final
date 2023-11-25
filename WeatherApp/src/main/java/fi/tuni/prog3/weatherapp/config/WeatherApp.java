@@ -1,5 +1,7 @@
-package fi.tuni.prog3.weatherapp;
+package fi.tuni.prog3.weatherapp.config;
 
+import fi.tuni.prog3.weatherapp.WeatherSystemApplication;
+import fi.tuni.prog3.weatherapp.controller.MainViewController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Parent;
@@ -8,7 +10,6 @@ import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxWeaver;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
-
 
 /**
  * JavaFX Sisu
@@ -33,7 +34,7 @@ public class WeatherApp extends Application {
     public void start(Stage stage) {
         try {
             FxWeaver fxWeaver = applicationContext.getBean(FxWeaver.class);
-            Parent root = fxWeaver.loadView(PrimaryController.class);
+            Parent root = fxWeaver.loadView(MainViewController.class);
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();

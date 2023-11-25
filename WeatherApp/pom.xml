@@ -150,6 +150,12 @@
             <version>4.1.73.Final</version>
             <classifier>osx-aarch_64</classifier>
         </dependency>
+
+        <dependency>
+            <groupId>io.hypersistence</groupId>
+            <artifactId>hypersistence-utils-hibernate-55</artifactId>
+            <version>3.2.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -164,9 +170,9 @@
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.4</version>
+                <version>0.0.6</version>
                 <configuration>
-                    <mainClass>fi.tuni.prog3.weatherapp.WeatherApp</mainClass>
+                    <mainClass>fi.tuni.prog3.weatherapp.config.WeatherApp</mainClass>
                 </configuration>
                 <executions>
                     <execution>

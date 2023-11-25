@@ -1,4 +1,4 @@
-package fi.tuni.prog3.weatherapp;
+package fi.tuni.prog3.weatherapp.dto;
 
 
 import lombok.Getter;
