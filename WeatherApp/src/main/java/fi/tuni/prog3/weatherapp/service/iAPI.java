@@ -25,8 +25,6 @@ public interface iAPI {
 
     void updateFavoriteStatus(Long id, boolean isFavorite);
 
-    void isNotFavorite(Long id);
-
     WeatherInfoDto findById(Long id);
 
 }

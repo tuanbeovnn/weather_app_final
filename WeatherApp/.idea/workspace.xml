@@ -4,13 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="94257c2b-89c5-447f-be7f-8075a39d806a" name="Changes" comment="Updated for run build failed">
-      <change beforePath="$PROJECT_DIR$/src/main/java/fi/tuni/prog3/weatherapp/dto/CoordDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fi/tuni/prog3/weatherapp/dto/CoordDto.java" afterDir="false" />
+    <list default="true" id="94257c2b-89c5-447f-be7f-8075a39d806a" name="Changes" comment="Improve logic for render forecast">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -19,6 +27,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2Yrg3Jg3WCCm59jrq4VVuOyRElO" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -33,6 +44,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "jdk.selected.JAVA_MODULE": "17",
+    "last_opened_file_path": "/Users/tuanbeo/Documents/Master_Degree/Interface_Technicals/V2/group2976/WeatherApp/src",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -41,28 +53,109 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "Errors",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
     "spring.configuration.checksum": "c08784026d7c4b13feeaa538a78d8666",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration name="WeatherSystemApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="fi.tuni.prog3.weatherapp" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.WeatherApiTest">
+    <configuration name="WeatherApiTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="WeatherApp" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="fi.tuni.prog3.weatherapp.WeatherSystemApplication" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="fi.tuni.prog3.weatherapp.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="fi.tuni.prog3.weatherapp" />
+      <option name="MAIN_CLASS_NAME" value="fi.tuni.prog3.weatherapp.WeatherApiTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WeatherApiTest.getForecast_LocationNotProvided_ReturnsDefaultLocationForeCastInfoDto" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="WeatherApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="fi.tuni.prog3.weatherapp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="fi.tuni.prog3.weatherapp" />
+      <option name="MAIN_CLASS_NAME" value="fi.tuni.prog3.weatherapp.WeatherApiTest" />
+      <option name="METHOD_NAME" value="getForecast_LocationNotProvided_ReturnsDefaultLocationForeCastInfoDto" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WeatherApiTest.getForecast_LocationProvided_ReturnsForeCastInfoDto" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="WeatherApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="fi.tuni.prog3.weatherapp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="fi.tuni.prog3.weatherapp" />
+      <option name="MAIN_CLASS_NAME" value="fi.tuni.prog3.weatherapp.WeatherApiTest" />
+      <option name="METHOD_NAME" value="getForecast_LocationProvided_ReturnsForeCastInfoDto" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WeatherApiTest.getListFavorite_FavoriteExists_ReturnsList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="WeatherApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="fi.tuni.prog3.weatherapp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="fi.tuni.prog3.weatherapp" />
+      <option name="MAIN_CLASS_NAME" value="fi.tuni.prog3.weatherapp.WeatherApiTest" />
+      <option name="METHOD_NAME" value="getListFavorite_FavoriteExists_ReturnsList" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WeatherApiTest.lookUpLocation_LocationNotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="WeatherApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="fi.tuni.prog3.weatherapp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="fi.tuni.prog3.weatherapp" />
+      <option name="MAIN_CLASS_NAME" value="fi.tuni.prog3.weatherapp.WeatherApiTest" />
+      <option name="METHOD_NAME" value="lookUpLocation_LocationNotFound" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.WeatherSystemApplication" />
+        <item itemvalue="JUnit.WeatherApiTest" />
+        <item itemvalue="JUnit.WeatherApiTest.lookUpLocation_LocationNotFound" />
+        <item itemvalue="JUnit.WeatherApiTest.getListFavorite_FavoriteExists_ReturnsList" />
+        <item itemvalue="JUnit.WeatherApiTest.getForecast_LocationProvided_ReturnsForeCastInfoDto" />
+        <item itemvalue="JUnit.WeatherApiTest.getForecast_LocationNotProvided_ReturnsDefaultLocationForeCastInfoDto" />
       </list>
     </recent_temporary>
   </component>
@@ -75,7 +168,7 @@
       <option name="presentableId" value="Default" />
       <updated>1701288911305</updated>
       <workItem from="1701288912672" duration="2037000" />
-      <workItem from="1701290963722" duration="3676000" />
+      <workItem from="1701290963722" duration="5450000" />
     </task>
     <task id="LOCAL-00001" summary="Updated code for render the weatherDto">
       <created>1701289315926</created>
@@ -91,7 +184,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701294458015</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Improve logic for render forecast">
+      <created>1701294924646</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1701294924646</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -102,6 +202,7 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Updated code for render the weatherDto" />
     <MESSAGE value="Updated for run build failed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated for run build failed" />
+    <MESSAGE value="Improve logic for render forecast" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improve logic for render forecast" />
   </component>
 </project>

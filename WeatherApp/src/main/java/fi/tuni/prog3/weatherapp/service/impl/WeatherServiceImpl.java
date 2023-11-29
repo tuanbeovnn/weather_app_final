@@ -107,14 +107,6 @@ public class WeatherServiceImpl implements iAPI {
     }
 
     @Override
-    public void isNotFavorite(Long id) {
-        WeatherHistoryEntity weatherHistoryEntity = weatherHistoryRepository.findById(id)
-                .orElseThrow(() -> new WeatherException(ErrorCode.ID_NOT_FOUND));
-        weatherHistoryEntity.setFavorite(false);
-        weatherHistoryRepository.save(weatherHistoryEntity);
-    }
-
-    @Override
     public WeatherInfoDto findById(Long id) {
         WeatherHistoryEntity weatherHistoryEntity = weatherHistoryRepository.findById(id)
                 .orElseThrow(() -> new WeatherException(ErrorCode.ID_NOT_FOUND));
