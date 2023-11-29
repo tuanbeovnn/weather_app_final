@@ -424,7 +424,7 @@ public class MainViewController implements Initializable {
         var id = Long.parseLong(current_id.getText());
         var location = inpLocation.getText();
         WeatherInfoDto weatherInfoDto = iAPI.findById(id);
-        if (weatherInfoDto.getIsFavorite()) {
+        if (weatherInfoDto.getFavorite()) {
             iAPI.updateFavoriteStatus(id, false);
             setFavoriteImage(false);
         } else {

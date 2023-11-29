@@ -9,7 +9,6 @@ import fi.tuni.prog3.weatherapp.repository.WeatherHistoryRepository;
 import fi.tuni.prog3.weatherapp.service.iAPI;
 import fi.tuni.prog3.weatherapp.util.GsonUtils;
 import fi.tuni.prog3.weatherapp.weatherapi.WeatherApi;
-import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -20,12 +19,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class WeatherServiceImpl implements iAPI {
     private static final Logger logger = LoggerFactory.getLogger(WeatherServiceImpl.class);
     private static final String DEFAULT_LOCATION = "Vaasa";
     private final WeatherApi weatherApi;
     private final WeatherHistoryRepository weatherHistoryRepository;
+
+    public WeatherServiceImpl(WeatherApi weatherApi, WeatherHistoryRepository weatherHistoryRepository) {
+        this.weatherApi = weatherApi;
+        this.weatherHistoryRepository = weatherHistoryRepository;
+    }
 
     @Override
     public WeatherInfoDto lookUpLocation(String loc) {
@@ -36,7 +39,7 @@ public class WeatherServiceImpl implements iAPI {
                 weatherHistoryEntity.setLocation(weatherInfoDto.getName());
                 weatherHistoryEntity.setDetails(GsonUtils.objectToString(weatherInfoDto));
                 weatherHistoryEntity.setWeatherIdLocation(weatherInfoDto.getId());
-                weatherHistoryEntity.setIsFavorite(false);
+                weatherHistoryEntity.setFavorite(false);
                 weatherHistoryEntity = weatherHistoryRepository.save(weatherHistoryEntity);
                 weatherInfoDto.setCurrentId(weatherHistoryEntity.getId());
             }
@@ -99,7 +102,7 @@ public class WeatherServiceImpl implements iAPI {
         WeatherHistoryEntity weatherHistoryEntity = weatherHistoryRepository.findById(id)
                 .orElseThrow(() -> new WeatherException(ErrorCode.ID_NOT_FOUND));
 
-        weatherHistoryEntity.setIsFavorite(isFavorite);
+        weatherHistoryEntity.setFavorite(isFavorite);
         weatherHistoryRepository.save(weatherHistoryEntity);
     }
 
@@ -107,15 +110,16 @@ public class WeatherServiceImpl implements iAPI {
     public void isNotFavorite(Long id) {
         WeatherHistoryEntity weatherHistoryEntity = weatherHistoryRepository.findById(id)
                 .orElseThrow(() -> new WeatherException(ErrorCode.ID_NOT_FOUND));
-        weatherHistoryEntity.setIsFavorite(false);
+        weatherHistoryEntity.setFavorite(false);
         weatherHistoryRepository.save(weatherHistoryEntity);
     }
+
     @Override
     public WeatherInfoDto findById(Long id) {
         WeatherHistoryEntity weatherHistoryEntity = weatherHistoryRepository.findById(id)
                 .orElseThrow(() -> new WeatherException(ErrorCode.ID_NOT_FOUND));
         WeatherInfoDto weatherInfoDto = GsonUtils.stringToObject(weatherHistoryEntity.getDetails(), WeatherInfoDto.class);
-        weatherInfoDto.setIsFavorite(weatherHistoryEntity.getIsFavorite());
+        weatherInfoDto.setFavorite(weatherHistoryEntity.getFavorite());
         return weatherInfoDto;
     }
 
