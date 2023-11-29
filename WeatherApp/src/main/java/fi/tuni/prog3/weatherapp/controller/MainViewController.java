@@ -551,61 +551,25 @@ public class MainViewController implements Initializable {
     }
 
     private void renderDataItem(ForeCastDto foreCastDto, int index) {
-        switch (index) {
-            case 1:
-                dateForecast1.setText(formatLocalDateTime(foreCastDto.getDt_txt()));
-                timeForecast1.setText(DateTimeUtil.formatDateTime(foreCastDto.getDt_txt()));
-                statForecast1.setText(foreCastDto.getWeather().get(0).getMain());
-                var temperatureRange1 = String.format("%d°C/%d°C",
-                        Math.round(foreCastDto.getMain().getTemp_max()),
-                        Math.round(foreCastDto.getMain().getTemp_min()));
-                highLowForecast1.setText(temperatureRange1);
-                iconForecast1.setImage(new Image(OPEN_WEATHER_URL_IMG + foreCastDto.getWeather().get(0).getIcon() + "@2x.png"));
+        Text[] dateForecasts = {dateForecast1, dateForecast2, dateForecast3, dateForecast4, dateForecast5};
+        Text[] timeForecasts = {timeForecast1, timeForecast2, timeForecast3, timeForecast4, timeForecast5};
+        Label[] statForecasts = {statForecast1, statForecast2, statForecast3, statForecast4, statForecast5};
+        Label[] highLowForecasts = {highLowForecast1, highLowForecast2, highLowForecast3, highLowForecast4, highLowForecast5};
+        ImageView[] iconForecasts = {iconForecast1, iconForecast2, iconForecast3, iconForecast4, iconForecast5};
 
-                break;
-            case 2:
-                dateForecast2.setText(formatLocalDateTime(foreCastDto.getDt_txt()));
-                timeForecast2.setText(DateTimeUtil.formatDateTime(foreCastDto.getDt_txt()));
-                statForecast2.setText(foreCastDto.getWeather().get(0).getMain());
-                var temperatureRange2 = String.format("%d°C/%d°C",
-                        Math.round(foreCastDto.getMain().getTemp_max()),
-                        Math.round(foreCastDto.getMain().getTemp_min()));
-                highLowForecast2.setText(temperatureRange2);
-                iconForecast2.setImage(new Image(OPEN_WEATHER_URL_IMG + foreCastDto.getWeather().get(0).getIcon() + "@2x.png"));
-                break;
-            case 3:
-                dateForecast3.setText(formatLocalDateTime(foreCastDto.getDt_txt()));
-                timeForecast3.setText(DateTimeUtil.formatDateTime(foreCastDto.getDt_txt()));
-                statForecast3.setText(foreCastDto.getWeather().get(0).getMain());
-                var temperatureRange3 = String.format("%d°C/%d°C",
-                        Math.round(foreCastDto.getMain().getTemp_max()),
-                        Math.round(foreCastDto.getMain().getTemp_min()));
-                highLowForecast3.setText(temperatureRange3);
-                iconForecast3.setImage(new Image(OPEN_WEATHER_URL_IMG + foreCastDto.getWeather().get(0).getIcon() + "@2x.png"));
-                break;
-            case 4:
-                dateForecast4.setText(formatLocalDateTime(foreCastDto.getDt_txt()));
-                timeForecast4.setText(DateTimeUtil.formatDateTime(foreCastDto.getDt_txt()));
-                statForecast4.setText(foreCastDto.getWeather().get(0).getMain());
-                var temperatureRange4 = String.format("%d°C/%d°C",
-                        Math.round(foreCastDto.getMain().getTemp_max()),
-                        Math.round(foreCastDto.getMain().getTemp_min()));
-                highLowForecast4.setText(temperatureRange4);
-                iconForecast4.setImage(new Image(OPEN_WEATHER_URL_IMG + foreCastDto.getWeather().get(0).getIcon() + "@2x.png"));
-                break;
-            case 5:
-                dateForecast5.setText(formatLocalDateTime(foreCastDto.getDt_txt()));
-                timeForecast5.setText(DateTimeUtil.formatDateTime(foreCastDto.getDt_txt()));
-                statForecast5.setText(foreCastDto.getWeather().get(0).getMain());
-                var temperatureRange5 = String.format("%d°C/%d°C",
-                        Math.round(foreCastDto.getMain().getTemp_max()),
-                        Math.round(foreCastDto.getMain().getTemp_min()));
-                highLowForecast5.setText(temperatureRange5);
-                iconForecast5.setImage(new Image(OPEN_WEATHER_URL_IMG + foreCastDto.getWeather().get(0).getIcon() + "@2x.png"));
-                break;
+        if (index >= 1 && index <= 5) {
+            dateForecasts[index - 1].setText(formatLocalDateTime(foreCastDto.getDt_txt()));
+            timeForecasts[index - 1].setText(DateTimeUtil.formatDateTime(foreCastDto.getDt_txt()));
+            statForecasts[index - 1].setText(foreCastDto.getWeather().get(0).getMain());
+
+            var temperatureRange = String.format("%d°C/%d°C",
+                    Math.round(foreCastDto.getMain().getTemp_max()),
+                    Math.round(foreCastDto.getMain().getTemp_min()));
+            highLowForecasts[index - 1].setText(temperatureRange);
+
+            iconForecasts[index - 1].setImage(new Image(OPEN_WEATHER_URL_IMG + foreCastDto.getWeather().get(0).getIcon() + "@2x.png"));
         }
     }
-
 
 }
 
