@@ -23,5 +23,7 @@ public class WeatherInfoDto {
     private Long id;
     private String name;
     private Long cod;
+    private Boolean isFavorite;
+    private Long currentId;
 
 }

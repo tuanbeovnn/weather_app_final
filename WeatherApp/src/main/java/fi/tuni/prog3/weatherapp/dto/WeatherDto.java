@@ -9,21 +9,10 @@ import java.util.List;
 
 @Getter
 @Setter
-public class WeatherInfoDto {
-    private CoordDto coord;
-    private List<WeatherDto> weather;
-    private String base;
-    private MainDto main;
-    private Long visibility;
-    private WindDto wind;
-    private CloudsDto clouds;
-    private Long dt;
-    private SysDto sys;
-    private Long timezone;
+public class WeatherDto {
     private Long id;
-    private String name;
-    private Long cod;
-    private Boolean isFavorite;
-    private Long currentId;
+    private String main;
+    private String description;
+    private String icon;
 
 }
