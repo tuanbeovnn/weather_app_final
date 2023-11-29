@@ -4,31 +4,29 @@
  */
 package fi.tuni.prog3.weatherapp.service;
 
+import fi.tuni.prog3.weatherapp.dto.ForeCastInfoDto;
+import fi.tuni.prog3.weatherapp.dto.WeatherInfoDto;
+
+import java.util.List;
+
 /**
  * Interface for extracting data from the OpenWeatherMap API.
  */
 public interface iAPI {
-    
-    /**
-     * Returns coordinates for a location.
-     * @param loc Name of the location for which coordinates should be fetched.
-     * @return String.
-     */
-    public String lookUpLocation(String loc);
-    
-    /**
-     * Returns the current weather for the given coordinates.
-     * @param lat The latitude of the location.
-     * @param lon The longitude of the location.
-     * @return String.
-     */
-    public String getCurrentWeather(double lat, double lon);
+    WeatherInfoDto lookUpLocation(String loc);
 
-    /**
-     * Returns a forecast for the given coordinates.
-     * @param lat The latitude of the location.
-     * @param lon The longitude of the location.
-     * @return String.
-     */
-    public String getForecast(double lat, double lon);
+    WeatherInfoDto getCurrentWeather(String location);
+
+    ForeCastInfoDto getForecast(String location);
+
+    List<WeatherInfoDto> getListHistory();
+
+    List<WeatherInfoDto> getListFavorite();
+
+    void updateFavoriteStatus(Long id, boolean isFavorite);
+
+    void isNotFavorite(Long id);
+
+    WeatherInfoDto findById(Long id);
+
 }

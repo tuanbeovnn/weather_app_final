@@ -16,4 +16,15 @@ public class DateTimeUtil {
         return dateTime.format(formatter);
     }
 
+    public static String formatLocalDateTime(String inputDateString) {
+        LocalDateTime dateTime = LocalDateTime.parse(inputDateString, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        return dateTime.format(DateTimeFormatter.ofPattern("E, MMM d"));
+    }
+
+    public static String formatDateTime(String inputDateString) {
+        LocalDateTime dateTime = LocalDateTime.parse(inputDateString, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        return dateTime.format(DateTimeFormatter.ofPattern("HH:mm"));
+    }
+
+
 }

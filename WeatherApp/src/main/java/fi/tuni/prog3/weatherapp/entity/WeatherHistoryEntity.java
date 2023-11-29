@@ -38,6 +38,9 @@ public class WeatherHistoryEntity {
     @Column(name = "location_Id")
     private Long weatherIdLocation;
 
+    @Column(name = "is_Favorite")
+    private Boolean isFavorite;
+
     @Column(name = "created_date")
     @CreatedDate
     private Date createdDate;

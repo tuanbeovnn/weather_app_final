@@ -31,5 +31,8 @@ module fi.tuni.progthree.weatherapp {
     opens fi.tuni.prog3.weatherapp.service;
     opens fi.tuni.prog3.weatherapp.entity;
     opens fi.tuni.prog3.weatherapp.config;
-
+    exports fi.tuni.prog3.weatherapp.service.impl;
+    opens fi.tuni.prog3.weatherapp.service.impl;
+    exports fi.tuni.prog3.weatherapp.dto;
+    opens fi.tuni.prog3.weatherapp.dto;
 }

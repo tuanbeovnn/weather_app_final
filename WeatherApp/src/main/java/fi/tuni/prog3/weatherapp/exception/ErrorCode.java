@@ -3,6 +3,7 @@ package fi.tuni.prog3.weatherapp.exception;
 import org.springframework.http.HttpStatus;
 
 public enum ErrorCode implements CommonErrorCode {
+    ID_NOT_FOUND(HttpStatus.NOT_FOUND, "404", "Id could not found"),
     LOCATION_NOT_FOUND(HttpStatus.NOT_FOUND, "404", "Location could not found");
 
     private final HttpStatus status;

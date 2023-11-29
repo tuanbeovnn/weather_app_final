@@ -1,13 +1,18 @@
 package fi.tuni.prog3.weatherapp.controller;
 
 
-import javafx.application.Platform;
+import fi.tuni.prog3.weatherapp.dto.ForeCastDto;
+import fi.tuni.prog3.weatherapp.dto.ForeCastInfoDto;
+import fi.tuni.prog3.weatherapp.dto.WeatherInfoDto;
+import fi.tuni.prog3.weatherapp.service.iAPI;
+import fi.tuni.prog3.weatherapp.util.DateTimeUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -15,15 +20,29 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import net.rgielen.fxweaver.core.FxmlView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
+
+import static fi.tuni.prog3.weatherapp.util.DateTimeUtil.formatLocalDateTime;
 
 @Component
 @FxmlView("/mainView.fxml")
 public class MainViewController implements Initializable {
-    private static final String DEFAULT_LOCATION = "Vaasa";
+    private static final Logger logger = LoggerFactory.getLogger(MainViewController.class);
+    static final String IMAGE_URL_ADDED_FAVOURITE = "/icon-weather-detail/added-to-favorites.png";
+    static final String IMAGE_URL_ADD_TO_FAVOURITE = "/icon-weather-detail/add-to-favorites.png";
+    public static final String OPEN_WEATHER_URL_IMG = "https://openweathermap.org/img/wn/";
+    private final iAPI iAPI;
+
+    public MainViewController(iAPI iAPI) {
+        this.iAPI = iAPI;
+    }
+
     @FXML
     private ImageView ar_favou1;
 
@@ -350,7 +369,6 @@ public class MainViewController implements Initializable {
 
     @FXML
     private Label time;
-
     @FXML
     private AnchorPane title;
 
@@ -362,16 +380,29 @@ public class MainViewController implements Initializable {
 
     @FXML
     private Label visibility;
-
     @FXML
     private Label wind;
+    @FXML
+    private Label current_id;
+    @FXML
+    private Text timeForecast1;
+    @FXML
+    private Text timeForecast2;
+    @FXML
+    private Text timeForecast3;
+    @FXML
+    private Text timeForecast4;
+    @FXML
+    private Text timeForecast5;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         title.setVisible(true);
-        historyPane.setVisible(false);
-        favouritePane.setVisible(false);
-        loadInitialData();
+        btn_add_favorite.setVisible(false);
+        var weatherInfoDto = iAPI.getCurrentWeather("");
+        var foreCastInfoDto = iAPI.getForecast("");
+        renderDataFromWeatherApi(weatherInfoDto);
+        renderDataFromForeCastApi(foreCastInfoDto);
     }
 
     @FXML
@@ -390,7 +421,39 @@ public class MainViewController implements Initializable {
 
     @FXML
     public void addFavorite(MouseEvent mouseEvent) {
+        var id = Long.parseLong(current_id.getText());
+        var location = inpLocation.getText();
+        WeatherInfoDto weatherInfoDto = iAPI.findById(id);
+        if (weatherInfoDto.getIsFavorite()) {
+            iAPI.updateFavoriteStatus(id, false);
+            setFavoriteImage(false);
+        } else {
+            iAPI.updateFavoriteStatus(id, true);
+            setFavoriteImage(true);
+        }
+    }
 
+    private void setFavoriteImage(boolean isFavorite) {
+        String imageUrl = isFavorite ? IMAGE_URL_ADDED_FAVOURITE : IMAGE_URL_ADD_TO_FAVOURITE;
+        Image newImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(imageUrl)));
+        btn_add_favorite.setImage(newImage);
+    }
+
+    @FXML
+    void loadNewLocationData(ActionEvent event) {
+        var location = inpLocation.getText();
+        var weatherInfoDto = iAPI.lookUpLocation(location);
+        ForeCastInfoDto foreCastInfoDto = iAPI.getForecast(location);
+        if (weatherInfoDto != null && foreCastInfoDto != null) {
+            logger.info("Location was found: {}", location);
+            renderDataFromWeatherApi(weatherInfoDto);
+            renderDataFromForeCastApi(foreCastInfoDto);
+            locationErrorMessage.setText("");
+            btn_add_favorite.setVisible(true);
+        } else {
+            locationErrorMessage.setText("Invalid location. Please try again.");
+            locationErrorMessage.setTextFill(Color.RED);
+        }
     }
 
     @FXML
@@ -398,37 +461,7 @@ public class MainViewController implements Initializable {
         title.setVisible(true);
         historyPane.setVisible(false);
         favouritePane.setVisible(false);
-        loadInitialData();
     }
-
-    @FXML
-    void loadNewLocationData(ActionEvent event) {
-
-
-    }
-
-    private void loadInitialData() {
-
-    }
-
-
-    private void handleInvalidLocation() {
-        showError();
-    }
-
-    private void showError() {
-        Platform.runLater(() -> {
-            locationErrorMessage.setText("Invalid location. Please try again.");
-            locationErrorMessage.setTextFill(Color.RED);
-        });
-    }
-
-    private void clearErrorMessage() {
-        Platform.runLater(() -> {
-            locationErrorMessage.setText("");
-        });
-    }
-
 
     @FXML
     void get_favou1(MouseEvent event) {
@@ -489,4 +522,90 @@ public class MainViewController implements Initializable {
     void get_his6(MouseEvent event) {
         System.out.println("get history 6");
     }
+
+    private void renderDataFromWeatherApi(WeatherInfoDto weatherInfoDto) {
+        current_location.setText(weatherInfoDto.getName());
+        current_id.setText(weatherInfoDto.getCurrentId() == null ? "" : weatherInfoDto.getCurrentId().toString());
+        time.setText(DateTimeUtil.convertToTimeString(weatherInfoDto.getDt()));
+        headerTemp.setText(Math.round(weatherInfoDto.getMain().getTemp()) + "°C");
+        headerStat.setText(weatherInfoDto.getWeather().get(0).getMain());
+        headerStatDesc.setText(weatherInfoDto.getWeather().get(0).getDescription());
+
+        var temperatureRange = String.format("%d°C/%d°C",
+                Math.round(weatherInfoDto.getMain().getTemp_max()),
+                Math.round(weatherInfoDto.getMain().getTemp_min()));
+        highLow.setText(temperatureRange);
+        wind.setText(weatherInfoDto.getWind().getSpeed() + " m/s");
+        humidity.setText(weatherInfoDto.getMain().getHumidity() + "%");
+
+        pressure.setText(weatherInfoDto.getMain().getPressure() + " mb");
+        uv.setText(DateTimeUtil.convertToTimeString(weatherInfoDto.getSys().getSunrise()));
+        visibility.setText(weatherInfoDto.getVisibility() / 1000f + " km");
+        moonP.setText(DateTimeUtil.convertToTimeString(weatherInfoDto.getSys().getSunset()));
+    }
+
+    private void renderDataFromForeCastApi(ForeCastInfoDto foreCastInfoDtos) {
+        for (int i = 0; i < 5; i++) {
+            renderDataItem(foreCastInfoDtos.getList().get(7 + i * 8), i + 1);
+        }
+    }
+
+    private void renderDataItem(ForeCastDto foreCastDto, int index) {
+        switch (index) {
+            case 1:
+                dateForecast1.setText(formatLocalDateTime(foreCastDto.getDt_txt()));
+                timeForecast1.setText(DateTimeUtil.formatDateTime(foreCastDto.getDt_txt()));
+                statForecast1.setText(foreCastDto.getWeather().get(0).getMain());
+                var temperatureRange1 = String.format("%d°C/%d°C",
+                        Math.round(foreCastDto.getMain().getTemp_max()),
+                        Math.round(foreCastDto.getMain().getTemp_min()));
+                highLowForecast1.setText(temperatureRange1);
+                iconForecast1.setImage(new Image(OPEN_WEATHER_URL_IMG + foreCastDto.getWeather().get(0).getIcon() + "@2x.png"));
+
+                break;
+            case 2:
+                dateForecast2.setText(formatLocalDateTime(foreCastDto.getDt_txt()));
+                timeForecast2.setText(DateTimeUtil.formatDateTime(foreCastDto.getDt_txt()));
+                statForecast2.setText(foreCastDto.getWeather().get(0).getMain());
+                var temperatureRange2 = String.format("%d°C/%d°C",
+                        Math.round(foreCastDto.getMain().getTemp_max()),
+                        Math.round(foreCastDto.getMain().getTemp_min()));
+                highLowForecast2.setText(temperatureRange2);
+                iconForecast2.setImage(new Image(OPEN_WEATHER_URL_IMG + foreCastDto.getWeather().get(0).getIcon() + "@2x.png"));
+                break;
+            case 3:
+                dateForecast3.setText(formatLocalDateTime(foreCastDto.getDt_txt()));
+                timeForecast3.setText(DateTimeUtil.formatDateTime(foreCastDto.getDt_txt()));
+                statForecast3.setText(foreCastDto.getWeather().get(0).getMain());
+                var temperatureRange3 = String.format("%d°C/%d°C",
+                        Math.round(foreCastDto.getMain().getTemp_max()),
+                        Math.round(foreCastDto.getMain().getTemp_min()));
+                highLowForecast3.setText(temperatureRange3);
+                iconForecast3.setImage(new Image(OPEN_WEATHER_URL_IMG + foreCastDto.getWeather().get(0).getIcon() + "@2x.png"));
+                break;
+            case 4:
+                dateForecast4.setText(formatLocalDateTime(foreCastDto.getDt_txt()));
+                timeForecast4.setText(DateTimeUtil.formatDateTime(foreCastDto.getDt_txt()));
+                statForecast4.setText(foreCastDto.getWeather().get(0).getMain());
+                var temperatureRange4 = String.format("%d°C/%d°C",
+                        Math.round(foreCastDto.getMain().getTemp_max()),
+                        Math.round(foreCastDto.getMain().getTemp_min()));
+                highLowForecast4.setText(temperatureRange4);
+                iconForecast4.setImage(new Image(OPEN_WEATHER_URL_IMG + foreCastDto.getWeather().get(0).getIcon() + "@2x.png"));
+                break;
+            case 5:
+                dateForecast5.setText(formatLocalDateTime(foreCastDto.getDt_txt()));
+                timeForecast5.setText(DateTimeUtil.formatDateTime(foreCastDto.getDt_txt()));
+                statForecast5.setText(foreCastDto.getWeather().get(0).getMain());
+                var temperatureRange5 = String.format("%d°C/%d°C",
+                        Math.round(foreCastDto.getMain().getTemp_max()),
+                        Math.round(foreCastDto.getMain().getTemp_min()));
+                highLowForecast5.setText(temperatureRange5);
+                iconForecast5.setImage(new Image(OPEN_WEATHER_URL_IMG + foreCastDto.getWeather().get(0).getIcon() + "@2x.png"));
+                break;
+        }
+    }
+
+
 }
+
