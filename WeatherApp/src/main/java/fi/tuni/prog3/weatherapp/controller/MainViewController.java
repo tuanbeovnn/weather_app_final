@@ -25,8 +25,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
+import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.stream.IntStream;
 
 import static fi.tuni.prog3.weatherapp.util.DateTimeUtil.formatLocalDateTime;
 
@@ -417,6 +419,7 @@ public class MainViewController implements Initializable {
         title.setVisible(false);
         historyPane.setVisible(true);
         favouritePane.setVisible(false);
+        renderHistory();
     }
 
     @FXML
@@ -570,6 +573,32 @@ public class MainViewController implements Initializable {
             iconForecasts[index - 1].setImage(new Image(OPEN_WEATHER_URL_IMG + foreCastDto.getWeather().get(0).getIcon() + "@2x.png"));
         }
     }
+    private void renderHistory() {
+        List<WeatherInfoDto> weatherInfoDtoList = iAPI.getListHistory();
+        Text[] weatherHistoryCities = {city_history1, city_history2, city_history3, city_history4, city_history5, city_history6};
+        ImageView[] iconHistoryCities = {icon_history1, icon_history2, icon_history3, icon_history4, icon_history5, icon_history6};
+        Text[] tempHistoryCities = {temp_history1, temp_history2, temp_history3, temp_history4, temp_history5, temp_history6};
+        Text[] descHistoryCities = {desc_history1, desc_history2, desc_history3, desc_history4, desc_history5, desc_history6};
+
+        IntStream.range(0, Math.min(weatherInfoDtoList.size(), weatherHistoryCities.length))
+                .forEach(i -> renderCity(weatherInfoDtoList.get(i), weatherHistoryCities[i], iconHistoryCities[i], tempHistoryCities[i], descHistoryCities[i]));
+    }
+
+    private void renderCity(WeatherInfoDto weatherInfoDto, Text cityText, ImageView iconImage, Text tempText, Text descText) {
+        if (weatherInfoDto != null) {
+            cityText.setText(weatherInfoDto.getName());
+            iconImage.setImage(new Image(getIconUrl(weatherInfoDto.getWeather().get(0).getIcon())));
+            tempText.setText(Math.round(weatherInfoDto.getMain().getTemp()) + "°C");
+            descText.setText(weatherInfoDto.getWeather().get(0).getDescription());
+        } else {
+            cityText.setText("No data available");
+        }
+    }
+
+    private String getIconUrl(String iconCode) {
+        return OPEN_WEATHER_URL_IMG + iconCode + "@2x.png";
+    }
+
 
 }
 
