@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="94257c2b-89c5-447f-be7f-8075a39d806a" name="Changes" comment="fixed to run application">
+    <list default="true" id="94257c2b-89c5-447f-be7f-8075a39d806a" name="Changes" comment="Show history pannel">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fi/tuni/prog3/weatherapp/controller/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fi/tuni/prog3/weatherapp/controller/MainViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fi/tuni/prog3/weatherapp/service/impl/WeatherServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fi/tuni/prog3/weatherapp/service/impl/WeatherServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +174,7 @@
       <workItem from="1701288912672" duration="2037000" />
       <workItem from="1701290963722" duration="6893000" />
       <workItem from="1701380671624" duration="97000" />
-      <workItem from="1701380775421" duration="2226000" />
+      <workItem from="1701380775421" duration="3245000" />
     </task>
     <task id="LOCAL-00001" summary="Updated code for render the weatherDto">
       <created>1701289315926</created>
@@ -202,7 +204,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701296606004</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Show history pannel">
+      <created>1701383316059</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1701383316060</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -215,6 +224,7 @@
     <MESSAGE value="Updated for run build failed" />
     <MESSAGE value="Improve logic for render forecast" />
     <MESSAGE value="Write test cases." />
-    <option name="LAST_COMMIT_MESSAGE" value="Write test cases." />
+    <MESSAGE value="Show history pannel" />
+    <option name="LAST_COMMIT_MESSAGE" value="Show history pannel" />
   </component>
 </project>

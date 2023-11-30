@@ -76,9 +76,10 @@ public class WeatherServiceImpl implements iAPI {
         List<WeatherHistoryEntity> weatherInfoDtoList = weatherHistoryRepository.findAllByCreatedDate();
 
         if (weatherInfoDtoList == null) {
+            logger.error("Get list history unsuccessfully {}", weatherInfoDtoList);
             return Collections.emptyList();
         }
-
+        logger.info("Get list history successfully {}", weatherInfoDtoList);
         return weatherInfoDtoList.stream()
                 .map(weatherHistoryEntity -> GsonUtils.stringToObject(weatherHistoryEntity.getDetails(), WeatherInfoDto.class))
                 .collect(Collectors.toList());
@@ -89,8 +90,10 @@ public class WeatherServiceImpl implements iAPI {
         List<WeatherHistoryEntity> weatherInfoDtoList = weatherHistoryRepository.findAllByFavoriteCreatedDate();
 
         if (weatherInfoDtoList == null) {
+            logger.error("Get list favorite unsuccessfully {}", weatherInfoDtoList);
             return Collections.emptyList();
         }
+        logger.info("Get list favorite successfully {}", weatherInfoDtoList);
 
         return weatherInfoDtoList.stream()
                 .map(weatherHistoryEntity -> GsonUtils.stringToObject(weatherHistoryEntity.getDetails(), WeatherInfoDto.class))
