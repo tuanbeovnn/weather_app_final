@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="94257c2b-89c5-447f-be7f-8075a39d806a" name="Changes" comment="Improve logic for render forecast">
+    <list default="true" id="94257c2b-89c5-447f-be7f-8075a39d806a" name="Changes" comment="Write test cases.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/fi/tuni/prog3/weatherapp/WeatherApiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/fi/tuni/prog3/weatherapp/WeatherApiTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +169,7 @@
       <option name="presentableId" value="Default" />
       <updated>1701288911305</updated>
       <workItem from="1701288912672" duration="2037000" />
-      <workItem from="1701290963722" duration="5450000" />
+      <workItem from="1701290963722" duration="6893000" />
     </task>
     <task id="LOCAL-00001" summary="Updated code for render the weatherDto">
       <created>1701289315926</created>
@@ -191,7 +192,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701294924646</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Write test cases.">
+      <created>1701296606004</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1701296606004</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -203,6 +211,7 @@
     <MESSAGE value="Updated code for render the weatherDto" />
     <MESSAGE value="Updated for run build failed" />
     <MESSAGE value="Improve logic for render forecast" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improve logic for render forecast" />
+    <MESSAGE value="Write test cases." />
+    <option name="LAST_COMMIT_MESSAGE" value="Write test cases." />
   </component>
 </project>

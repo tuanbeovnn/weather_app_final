@@ -23,7 +23,7 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = WeatherApp.class)
 @AutoConfigureMockMvc
-class WeatherApiTest {
+public class WeatherApiTest {
     @Mock
     private WeatherApi weatherApi;
     @Mock
@@ -32,7 +32,7 @@ class WeatherApiTest {
     private WeatherServiceImpl weatherService;
 
     @Test
-    void lookUpLocation_Success() {
+    public void lookUpLocation_Success() {
         WeatherInfoDto mockWeatherInfoDto = new WeatherInfoDto();
         mockWeatherInfoDto.setName("TestLocation");
 
@@ -51,7 +51,7 @@ class WeatherApiTest {
     }
 
     @Test
-    void lookUpLocation_LocationNotFound() {
+    public void lookUpLocation_LocationNotFound() {
         Mockito.when(weatherApi.weatherInfo(Mockito.anyString())).thenThrow(WebClientResponseException.NotFound.class);
 
         WeatherInfoDto result = weatherService.lookUpLocation("NonExistentLocation");
@@ -61,7 +61,7 @@ class WeatherApiTest {
 
 
     @Test
-    void getListHistory_NoHistory_ReturnsEmptyList() {
+    public void getListHistory_NoHistory_ReturnsEmptyList() {
         Mockito.when(weatherHistoryRepository.findAllByCreatedDate()).thenReturn(Collections.emptyList());
         List<WeatherInfoDto> result = weatherService.getListHistory();
 
