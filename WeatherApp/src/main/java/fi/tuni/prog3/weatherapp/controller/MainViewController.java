@@ -412,6 +412,7 @@ public class MainViewController implements Initializable {
         title.setVisible(false);
         historyPane.setVisible(false);
         favouritePane.setVisible(true);
+        renderFavorite();
     }
 
     @FXML
@@ -573,6 +574,7 @@ public class MainViewController implements Initializable {
             iconForecasts[index - 1].setImage(new Image(OPEN_WEATHER_URL_IMG + foreCastDto.getWeather().get(0).getIcon() + "@2x.png"));
         }
     }
+
     private void renderHistory() {
         List<WeatherInfoDto> weatherInfoDtoList = iAPI.getListHistory();
         Text[] weatherHistoryCities = {city_history1, city_history2, city_history3, city_history4, city_history5, city_history6};
@@ -582,6 +584,17 @@ public class MainViewController implements Initializable {
 
         IntStream.range(0, Math.min(weatherInfoDtoList.size(), weatherHistoryCities.length))
                 .forEach(i -> renderCity(weatherInfoDtoList.get(i), weatherHistoryCities[i], iconHistoryCities[i], tempHistoryCities[i], descHistoryCities[i]));
+    }
+
+    private void renderFavorite() {
+        List<WeatherInfoDto> weatherInfoDtoList = iAPI.getListFavorite();
+        Text[] weatherFavoriteCities = {city_favou1, city_favou2, city_favou3, city_favou4, city_favou5, city_favou6};
+        ImageView[] iconFavoriteCities = {icon_favou1, icon_favou2, icon_favou3, icon_favou4, icon_favou5, icon_favou6};
+        Text[] tempFavoriteCities = {temp_favou1, temp_favou2, temp_favou3, temp_favou4, temp_favou5, temp_favou6};
+        Text[] descFavoriteCities = {desc_favou1, desc_favou2, desc_favou3, desc_favou4, desc_favou5, desc_favou6};
+
+        IntStream.range(0, Math.min(weatherInfoDtoList.size(), weatherFavoriteCities.length))
+                .forEach(i -> renderCity(weatherInfoDtoList.get(i), weatherFavoriteCities[i], iconFavoriteCities[i], tempFavoriteCities[i], descFavoriteCities[i]));
     }
 
     private void renderCity(WeatherInfoDto weatherInfoDto, Text cityText, ImageView iconImage, Text tempText, Text descText) {
@@ -598,7 +611,6 @@ public class MainViewController implements Initializable {
     private String getIconUrl(String iconCode) {
         return OPEN_WEATHER_URL_IMG + iconCode + "@2x.png";
     }
-
 
 }
 
