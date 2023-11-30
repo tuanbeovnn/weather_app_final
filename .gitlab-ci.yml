@@ -1,5 +1,6 @@
 stages:
   - build
+  - test
 
 image:
   name: "maven:3.6.3-openjdk-11"
