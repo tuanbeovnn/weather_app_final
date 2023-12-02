@@ -576,7 +576,7 @@ public class MainViewController implements Initializable {
     }
 
     private void renderHistory() {
-        List<WeatherInfoDto> weatherInfoDtoList = iAPI.getListHistory();
+        var weatherInfoDtoList = iAPI.getListHistory();
         Text[] weatherHistoryCities = {city_history1, city_history2, city_history3, city_history4, city_history5, city_history6};
         ImageView[] iconHistoryCities = {icon_history1, icon_history2, icon_history3, icon_history4, icon_history5, icon_history6};
         Text[] tempHistoryCities = {temp_history1, temp_history2, temp_history3, temp_history4, temp_history5, temp_history6};
@@ -587,7 +587,7 @@ public class MainViewController implements Initializable {
     }
 
     private void renderFavorite() {
-        List<WeatherInfoDto> weatherInfoDtoList = iAPI.getListFavorite();
+        var weatherInfoDtoList = iAPI.getListFavorite();
         Text[] weatherFavoriteCities = {city_favou1, city_favou2, city_favou3, city_favou4, city_favou5, city_favou6};
         ImageView[] iconFavoriteCities = {icon_favou1, icon_favou2, icon_favou3, icon_favou4, icon_favou5, icon_favou6};
         Text[] tempFavoriteCities = {temp_favou1, temp_favou2, temp_favou3, temp_favou4, temp_favou5, temp_favou6};

@@ -33,8 +33,8 @@ public class WeatherServiceImpl implements iAPI {
     @Override
     public WeatherInfoDto lookUpLocation(String loc) {
         try {
-            WeatherHistoryEntity weatherHistoryEntity = new WeatherHistoryEntity();
-            WeatherInfoDto weatherInfoDto = weatherApi.weatherInfo(loc);
+            var weatherHistoryEntity = new WeatherHistoryEntity();
+            var weatherInfoDto = weatherApi.weatherInfo(loc);
             if (weatherInfoDto != null) {
                 weatherHistoryEntity.setLocation(weatherInfoDto.getName());
                 weatherHistoryEntity.setDetails(GsonUtils.objectToString(weatherInfoDto));
@@ -73,7 +73,7 @@ public class WeatherServiceImpl implements iAPI {
 
     @Override
     public List<WeatherInfoDto> getListHistory() {
-        List<WeatherHistoryEntity> weatherInfoDtoList = weatherHistoryRepository.findAllByCreatedDate();
+        var weatherInfoDtoList = weatherHistoryRepository.findAllByCreatedDate();
 
         if (weatherInfoDtoList == null) {
             logger.error("Get list history unsuccessfully {}", weatherInfoDtoList);
@@ -87,7 +87,7 @@ public class WeatherServiceImpl implements iAPI {
 
     @Override
     public List<WeatherInfoDto> getListFavorite() {
-        List<WeatherHistoryEntity> weatherInfoDtoList = weatherHistoryRepository.findAllByFavoriteCreatedDate();
+        var weatherInfoDtoList = weatherHistoryRepository.findAllByFavoriteCreatedDate();
 
         if (weatherInfoDtoList == null) {
             logger.error("Get list favorite unsuccessfully {}", weatherInfoDtoList);
@@ -102,7 +102,7 @@ public class WeatherServiceImpl implements iAPI {
 
     @Override
     public void updateFavoriteStatus(Long id, boolean isFavorite) {
-        WeatherHistoryEntity weatherHistoryEntity = weatherHistoryRepository.findById(id)
+        var weatherHistoryEntity = weatherHistoryRepository.findById(id)
                 .orElseThrow(() -> new WeatherException(ErrorCode.ID_NOT_FOUND));
 
         weatherHistoryEntity.setFavorite(isFavorite);
@@ -111,7 +111,7 @@ public class WeatherServiceImpl implements iAPI {
 
     @Override
     public WeatherInfoDto findById(Long id) {
-        WeatherHistoryEntity weatherHistoryEntity = weatherHistoryRepository.findById(id)
+        var weatherHistoryEntity = weatherHistoryRepository.findById(id)
                 .orElseThrow(() -> new WeatherException(ErrorCode.ID_NOT_FOUND));
         WeatherInfoDto weatherInfoDto = GsonUtils.stringToObject(weatherHistoryEntity.getDetails(), WeatherInfoDto.class);
         weatherInfoDto.setFavorite(weatherHistoryEntity.getFavorite());
