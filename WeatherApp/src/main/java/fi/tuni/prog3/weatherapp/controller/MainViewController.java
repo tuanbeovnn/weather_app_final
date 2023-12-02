@@ -25,7 +25,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
-import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.stream.IntStream;
@@ -46,380 +45,44 @@ public class MainViewController implements Initializable {
     }
 
     @FXML
-    private ImageView ar_favou1;
+    private ImageView ar_favou1, ar_favou2, ar_favou3, ar_favou4, ar_favou5, ar_favou6, backImg, btn_add_favorite,
+            iconForecast1, iconForecast2, iconForecast3, iconForecast4, iconForecast5,
+            icon_favou1, icon_favou2, icon_favou3, icon_favou4, icon_favou5, icon_favou6,
+            icon_history1, icon_history2, icon_history3, icon_history4, icon_history5, icon_history6, loader, titleBg;
 
     @FXML
-    private ImageView ar_favou2;
+    private Button btn_current, btn_favorite, btn_history;
 
     @FXML
-    private ImageView ar_favou3;
+    private Text city_favou1, city_favou2, city_favou3, city_favou4, city_favou5, city_favou6,
+            city_history1, city_history2, city_history3, city_history4, city_history5, city_history6,
+            dateForecast1, dateForecast2, dateForecast3, dateForecast4, dateForecast5,
+            desc_favou1, desc_favou2, desc_favou3, desc_favou4, desc_favou5, desc_favou6,
+            desc_history1, desc_history2, desc_history3, desc_history4, desc_history5, desc_history6,
+            temp_favou1, temp_favou2, temp_favou3, temp_favou4, temp_favou5, temp_favou6,
+            temp_history1, temp_history2, temp_history3, temp_history4, temp_history5, temp_history6,
+            timeForecast1, timeForecast2, timeForecast3, timeForecast4, timeForecast5;
 
-    @FXML
-    private ImageView ar_favou4;
-
-    @FXML
-    private ImageView ar_favou5;
-
-    @FXML
-    private ImageView ar_favou6;
-
-    @FXML
-    private ImageView backImg;
-
-    @FXML
-    private ImageView btn_add_favorite;
-
-    @FXML
-    private Button btn_current;
-
-    @FXML
-    private Button btn_favorite;
-
-    @FXML
-    private Button btn_history;
-
-    @FXML
-    private Text city_favou1;
-
-    @FXML
-    private Text city_favou2;
-
-    @FXML
-    private Text city_favou3;
-
-    @FXML
-    private Text city_favou4;
-
-    @FXML
-    private Text city_favou5;
-
-    @FXML
-    private Text city_favou6;
-
-    @FXML
-    private Text city_history1;
-
-    @FXML
-    private Text city_history2;
-
-    @FXML
-    private Text city_history3;
-
-    @FXML
-    private Text city_history4;
-
-    @FXML
-    private Text city_history5;
-
-    @FXML
-    private Text city_history6;
-
-    @FXML
-    private Label current_location;
-
-    @FXML
-    private Label current_location1;
-
-    @FXML
-    private Label current_location2;
-
-    @FXML
-    private Text dateForecast1;
-
-    @FXML
-    private Text dateForecast2;
-
-    @FXML
-    private Text dateForecast3;
-
-    @FXML
-    private Text dateForecast4;
-
-    @FXML
-    private Text dateForecast5;
-
-    @FXML
-    private Text desc_favou1;
-
-    @FXML
-    private Text desc_favou2;
-
-    @FXML
-    private Text desc_favou3;
-
-    @FXML
-    private Text desc_favou4;
-
-    @FXML
-    private Text desc_favou5;
-
-    @FXML
-    private Text desc_favou6;
-
-    @FXML
-    private Text desc_history1;
-
-    @FXML
-    private Text desc_history2;
-
-    @FXML
-    private Text desc_history3;
-
-    @FXML
-    private Text desc_history4;
-
-    @FXML
-    private Text desc_history5;
-
-    @FXML
-    private Text desc_history6;
-
-    @FXML
-    private HBox favou_1;
-
-    @FXML
-    private HBox favou_2;
-
-    @FXML
-    private HBox favou_3;
-
-    @FXML
-    private HBox favou_4;
-
-    @FXML
-    private HBox favou_5;
-
-    @FXML
-    private HBox favou_6;
-
-    @FXML
-    private AnchorPane favouritePane;
-
-    @FXML
-    private Label headerStat;
-
-    @FXML
-    private Label headerStatDesc;
-
-    @FXML
-    private Label headerTemp;
-
-    @FXML
-    private Label highLow;
-
-    @FXML
-    private Label highLowForecast1;
-
-    @FXML
-    private Label highLowForecast2;
-
-    @FXML
-    private Label highLowForecast3;
-
-    @FXML
-    private Label highLowForecast4;
-
-    @FXML
-    private Label highLowForecast5;
-
-    @FXML
-    private AnchorPane historyPane;
-
-    @FXML
-    private HBox history_1;
-
-    @FXML
-    private HBox history_2;
-
-    @FXML
-    private HBox history_3;
-
-    @FXML
-    private HBox history_4;
-
-    @FXML
-    private HBox history_5;
-
-    @FXML
-    private HBox history_6;
-
-    @FXML
-    private Label humidity;
-
-    @FXML
-    private ImageView iconForecast1;
-
-    @FXML
-    private ImageView iconForecast2;
-
-    @FXML
-    private ImageView iconForecast3;
-
-    @FXML
-    private ImageView iconForecast4;
-
-    @FXML
-    private ImageView iconForecast5;
-
-    @FXML
-    private ImageView icon_favou1;
-
-    @FXML
-    private ImageView icon_favou2;
-
-    @FXML
-    private ImageView icon_favou3;
-
-    @FXML
-    private ImageView icon_favou4;
-
-    @FXML
-    private ImageView icon_favou5;
-
-    @FXML
-    private ImageView icon_favou6;
-
-    @FXML
-    private ImageView icon_history1;
-
-    @FXML
-    private ImageView icon_history2;
 
     @FXML
-    private ImageView icon_history3;
+    private Label current_location, current_location1, current_location2, moonP, pressure,
+            statForecast1, statForecast2, statForecast3, statForecast4, statForecast5, time;
 
     @FXML
-    private ImageView icon_history4;
+    private HBox favou_1, favou_2, favou_3, favou_4, favou_5, favou_6,
+            history_1, history_2, history_3, history_4, history_5, history_6;
 
     @FXML
-    private ImageView icon_history5;
+    private AnchorPane favouritePane, historyPane, main, root, title;
 
     @FXML
-    private ImageView icon_history6;
+    private Label headerStat, headerStatDesc, headerTemp, highLow, highLowForecast1, highLowForecast2, highLowForecast3,
+            highLowForecast4, highLowForecast5, humidity, locationErrorMessage, uv, visibility, wind, current_id,
+            current_history_id1, current_history_id2, current_history_id3, current_history_id4, current_history_id5, current_history_id6,
+            current_favorite_id1, current_favorite_id2, current_favorite_id3, current_favorite_id4, current_favorite_id5, current_favorite_id6;
 
     @FXML
     private TextField inpLocation;
-
-    @FXML
-    private ImageView loader;
-
-    @FXML
-    private Label locationErrorMessage;
-
-    @FXML
-    private AnchorPane main;
-
-    @FXML
-    private Label moonP;
-
-    @FXML
-    private Label pressure;
-
-    @FXML
-    private AnchorPane root;
-
-    @FXML
-    private Label statForecast1;
-
-    @FXML
-    private Label statForecast2;
-
-    @FXML
-    private Label statForecast3;
-
-    @FXML
-    private Label statForecast4;
-
-    @FXML
-    private Label statForecast5;
-
-    @FXML
-    private Text temp_favou1;
-
-    @FXML
-    private Text temp_favou2;
-
-    @FXML
-    private Text temp_favou3;
-
-    @FXML
-    private Text temp_favou4;
-
-    @FXML
-    private Text temp_favou5;
-
-    @FXML
-    private Text temp_favou6;
-
-    @FXML
-    private Text temp_history1;
-
-    @FXML
-    private Text temp_history2;
-
-    @FXML
-    private Text temp_history3;
-
-    @FXML
-    private Text temp_history4;
-
-    @FXML
-    private Text temp_history5;
-
-    @FXML
-    private Text temp_history6;
-
-    @FXML
-    private Label time;
-    @FXML
-    private AnchorPane title;
-
-    @FXML
-    private ImageView titleBg;
-
-    @FXML
-    private Label uv;
-
-    @FXML
-    private Label visibility;
-    @FXML
-    private Label wind;
-    @FXML
-    private Label current_id;
-    @FXML
-    private Text timeForecast1;
-    @FXML
-    private Text timeForecast2;
-    @FXML
-    private Text timeForecast3;
-    @FXML
-    private Text timeForecast4;
-    @FXML
-    private Text timeForecast5;
-    @FXML
-    private Label current_history_id1;
-    @FXML
-    private Label current_history_id2;
-    @FXML
-    private Label current_history_id3;
-    @FXML
-    private Label current_history_id4;
-    @FXML
-    private Label current_history_id5;
-    @FXML
-    private Label current_history_id6;
-    @FXML
-    private Label current_favorite_id1;
-    @FXML
-    private Label current_favorite_id2;
-    @FXML
-    private Label current_favorite_id3;
-    @FXML
-    private Label current_favorite_id4;
-    @FXML
-    private Label current_favorite_id5;
-    @FXML
-    private Label current_favorite_id6;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -609,32 +272,6 @@ public class MainViewController implements Initializable {
         moonP.setText(DateTimeUtil.convertToTimeString(weatherInfoDto.getSys().getSunset()));
     }
 
-    private void renderDataFromForeCastApi(ForeCastInfoDto foreCastInfoDtos) {
-        for (int i = 0; i < 5; i++) {
-            renderDataItem(foreCastInfoDtos.getList().get(7 + i * 8), i + 1);
-        }
-    }
-
-    private void renderDataItem(ForeCastDto foreCastDto, int index) {
-        Text[] dateForecasts = {dateForecast1, dateForecast2, dateForecast3, dateForecast4, dateForecast5};
-        Text[] timeForecasts = {timeForecast1, timeForecast2, timeForecast3, timeForecast4, timeForecast5};
-        Label[] statForecasts = {statForecast1, statForecast2, statForecast3, statForecast4, statForecast5};
-        Label[] highLowForecasts = {highLowForecast1, highLowForecast2, highLowForecast3, highLowForecast4, highLowForecast5};
-        ImageView[] iconForecasts = {iconForecast1, iconForecast2, iconForecast3, iconForecast4, iconForecast5};
-
-        if (index >= 1 && index <= 5) {
-            dateForecasts[index - 1].setText(formatLocalDateTime(foreCastDto.getDt_txt()));
-            timeForecasts[index - 1].setText(DateTimeUtil.formatDateTime(foreCastDto.getDt_txt()));
-            statForecasts[index - 1].setText(foreCastDto.getWeather().get(0).getMain());
-
-            var temperatureRange = String.format("%d°C/%d°C",
-                    Math.round(foreCastDto.getMain().getTemp_max()),
-                    Math.round(foreCastDto.getMain().getTemp_min()));
-            highLowForecasts[index - 1].setText(temperatureRange);
-
-            iconForecasts[index - 1].setImage(new Image(OPEN_WEATHER_URL_IMG + foreCastDto.getWeather().get(0).getIcon() + "@2x.png"));
-        }
-    }
 
     private void renderHistory() {
         var weatherInfoDtoList = iAPI.getListHistory();
@@ -661,6 +298,33 @@ public class MainViewController implements Initializable {
                 .forEach(i -> renderCity(weatherInfoDtoList.get(i), weatherFavoriteCities[i], iconFavoriteCities[i], tempFavoriteCities[i], descFavoriteCities[i], currentIds[i]));
     }
 
+    private void renderDataItem(ForeCastDto foreCastDto, int index) {
+        Text[] dateForecasts = {dateForecast1, dateForecast2, dateForecast3, dateForecast4, dateForecast5};
+        Text[] timeForecasts = {timeForecast1, timeForecast2, timeForecast3, timeForecast4, timeForecast5};
+        Label[] statForecasts = {statForecast1, statForecast2, statForecast3, statForecast4, statForecast5};
+        Label[] highLowForecasts = {highLowForecast1, highLowForecast2, highLowForecast3, highLowForecast4, highLowForecast5};
+        ImageView[] iconForecasts = {iconForecast1, iconForecast2, iconForecast3, iconForecast4, iconForecast5};
+
+        if (index >= 1 && index <= 5) {
+            dateForecasts[index - 1].setText(formatLocalDateTime(foreCastDto.getDt_txt()));
+            timeForecasts[index - 1].setText(DateTimeUtil.formatDateTime(foreCastDto.getDt_txt()));
+            statForecasts[index - 1].setText(foreCastDto.getWeather().get(0).getMain());
+
+            var temperatureRange = String.format("%d°C/%d°C",
+                    Math.round(foreCastDto.getMain().getTemp_max()),
+                    Math.round(foreCastDto.getMain().getTemp_min()));
+            highLowForecasts[index - 1].setText(temperatureRange);
+
+            iconForecasts[index - 1].setImage(new Image(OPEN_WEATHER_URL_IMG + foreCastDto.getWeather().get(0).getIcon() + "@2x.png"));
+        }
+    }
+
+    private void renderDataFromForeCastApi(ForeCastInfoDto foreCastInfoDtos) {
+        for (int i = 0; i < 5; i++) {
+            renderDataItem(foreCastInfoDtos.getList().get(7 + i * 8), i + 1);
+        }
+    }
+
     private void renderCity(WeatherInfoDto weatherInfoDto, Text cityText, ImageView iconImage, Text tempText, Text descText, Label currentId) {
         if (weatherInfoDto != null) {
             cityText.setText(weatherInfoDto.getName());
@@ -678,4 +342,3 @@ public class MainViewController implements Initializable {
     }
 
 }
-
