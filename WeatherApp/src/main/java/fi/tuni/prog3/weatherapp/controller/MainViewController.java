@@ -454,6 +454,7 @@ public class MainViewController implements Initializable {
             renderDataFromForeCastApi(foreCastInfoDto);
             locationErrorMessage.setText("");
             btn_add_favorite.setVisible(true);
+            title.setVisible(true);
         } else {
             locationErrorMessage.setText("Invalid location. Please try again.");
             locationErrorMessage.setTextFill(Color.RED);
