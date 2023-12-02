@@ -124,6 +124,7 @@ public class WeatherServiceImpl implements iAPI {
                 .orElseThrow(() -> new WeatherException(ErrorCode.ID_NOT_FOUND));
         WeatherInfoDto weatherInfoDto = GsonUtils.stringToObject(weatherHistoryEntity.getDetails(), WeatherInfoDto.class);
         weatherInfoDto.setFavorite(weatherHistoryEntity.getFavorite());
+        logger.info("Find by id successfully {}", id);
         return weatherInfoDto;
     }
 

@@ -396,6 +396,30 @@ public class MainViewController implements Initializable {
     private Text timeForecast4;
     @FXML
     private Text timeForecast5;
+    @FXML
+    private Label current_history_id1;
+    @FXML
+    private Label current_history_id2;
+    @FXML
+    private Label current_history_id3;
+    @FXML
+    private Label current_history_id4;
+    @FXML
+    private Label current_history_id5;
+    @FXML
+    private Label current_history_id6;
+    @FXML
+    private Label current_favorite_id1;
+    @FXML
+    private Label current_favorite_id2;
+    @FXML
+    private Label current_favorite_id3;
+    @FXML
+    private Label current_favorite_id4;
+    @FXML
+    private Label current_favorite_id5;
+    @FXML
+    private Label current_favorite_id6;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -470,62 +494,98 @@ public class MainViewController implements Initializable {
 
     @FXML
     void get_favou1(MouseEvent event) {
-        System.out.println("get favourite 1");
+        var id = Long.parseLong(current_favorite_id1.getText());
+        WeatherInfoDto weatherInfoDto = iAPI.findById(id);
+        renderDataFromWeatherApi(weatherInfoDto);
+        title.setVisible(true);
     }
 
     @FXML
     void get_favou2(MouseEvent event) {
-        System.out.println("get favourite 2");
+        var id = Long.parseLong(current_favorite_id2.getText());
+        WeatherInfoDto weatherInfoDto = iAPI.findById(id);
+        renderDataFromWeatherApi(weatherInfoDto);
+        title.setVisible(true);
     }
 
     @FXML
     void get_favou3(MouseEvent event) {
-        System.out.println("get favourite 3");
+        var id = Long.parseLong(current_favorite_id3.getText());
+        WeatherInfoDto weatherInfoDto = iAPI.findById(id);
+        renderDataFromWeatherApi(weatherInfoDto);
+        title.setVisible(true);
     }
 
     @FXML
     void get_favou4(MouseEvent event) {
-        System.out.println("get favourite 4");
+        var id = Long.parseLong(current_favorite_id4.getText());
+        WeatherInfoDto weatherInfoDto = iAPI.findById(id);
+        renderDataFromWeatherApi(weatherInfoDto);
+        title.setVisible(true);
     }
 
     @FXML
     void get_favou5(MouseEvent event) {
-        System.out.println("get favourite 5");
+        var id = Long.parseLong(current_favorite_id5.getText());
+        WeatherInfoDto weatherInfoDto = iAPI.findById(id);
+        renderDataFromWeatherApi(weatherInfoDto);
+        title.setVisible(true);
     }
 
     @FXML
     void get_favou6(MouseEvent event) {
-        System.out.println("get favourite 6");
+        var id = Long.parseLong(current_favorite_id6.getText());
+        WeatherInfoDto weatherInfoDto = iAPI.findById(id);
+        renderDataFromWeatherApi(weatherInfoDto);
+        title.setVisible(true);
     }
 
     @FXML
     void get_his1(MouseEvent event) {
-        System.out.println("get history 1");
+        var id = Long.parseLong(current_history_id1.getText());
+        WeatherInfoDto weatherInfoDto = iAPI.findById(id);
+        renderDataFromWeatherApi(weatherInfoDto);
+        title.setVisible(true);
     }
 
     @FXML
     void get_his2(MouseEvent event) {
-        System.out.println("get history 2");
+        var id = Long.parseLong(current_history_id2.getText());
+        WeatherInfoDto weatherInfoDto = iAPI.findById(id);
+        renderDataFromWeatherApi(weatherInfoDto);
+        title.setVisible(true);
     }
 
     @FXML
     void get_his3(MouseEvent event) {
-        System.out.println("get history 3");
+        var id = Long.parseLong(current_history_id3.getText());
+        WeatherInfoDto weatherInfoDto = iAPI.findById(id);
+        renderDataFromWeatherApi(weatherInfoDto);
+        title.setVisible(true);
     }
 
     @FXML
     void get_his4(MouseEvent event) {
-        System.out.println("get history 4");
+        var id = Long.parseLong(current_history_id4.getText());
+        WeatherInfoDto weatherInfoDto = iAPI.findById(id);
+        renderDataFromWeatherApi(weatherInfoDto);
+        title.setVisible(true);
     }
 
     @FXML
     void get_his5(MouseEvent event) {
-        System.out.println("get history 5");
+        var id = Long.parseLong(current_history_id5.getText());
+        WeatherInfoDto weatherInfoDto = iAPI.findById(id);
+        renderDataFromWeatherApi(weatherInfoDto);
+        title.setVisible(true);
     }
 
     @FXML
     void get_his6(MouseEvent event) {
-        System.out.println("get history 6");
+        var id = Long.parseLong(current_history_id6.getText());
+        WeatherInfoDto weatherInfoDto = iAPI.findById(id);
+        renderDataFromWeatherApi(weatherInfoDto);
+        title.setVisible(true);
     }
 
     private void renderDataFromWeatherApi(WeatherInfoDto weatherInfoDto) {
@@ -582,9 +642,11 @@ public class MainViewController implements Initializable {
         ImageView[] iconHistoryCities = {icon_history1, icon_history2, icon_history3, icon_history4, icon_history5, icon_history6};
         Text[] tempHistoryCities = {temp_history1, temp_history2, temp_history3, temp_history4, temp_history5, temp_history6};
         Text[] descHistoryCities = {desc_history1, desc_history2, desc_history3, desc_history4, desc_history5, desc_history6};
+        Label[] currentIds = {current_history_id1, current_history_id2, current_history_id3, current_history_id4, current_history_id5, current_history_id6};
+
 
         IntStream.range(0, Math.min(weatherInfoDtoList.size(), weatherHistoryCities.length))
-                .forEach(i -> renderCity(weatherInfoDtoList.get(i), weatherHistoryCities[i], iconHistoryCities[i], tempHistoryCities[i], descHistoryCities[i]));
+                .forEach(i -> renderCity(weatherInfoDtoList.get(i), weatherHistoryCities[i], iconHistoryCities[i], tempHistoryCities[i], descHistoryCities[i], currentIds[i]));
     }
 
     private void renderFavorite() {
@@ -593,17 +655,19 @@ public class MainViewController implements Initializable {
         ImageView[] iconFavoriteCities = {icon_favou1, icon_favou2, icon_favou3, icon_favou4, icon_favou5, icon_favou6};
         Text[] tempFavoriteCities = {temp_favou1, temp_favou2, temp_favou3, temp_favou4, temp_favou5, temp_favou6};
         Text[] descFavoriteCities = {desc_favou1, desc_favou2, desc_favou3, desc_favou4, desc_favou5, desc_favou6};
+        Label[] currentIds = {current_favorite_id1, current_favorite_id2, current_favorite_id3, current_favorite_id4, current_favorite_id5, current_favorite_id6};
 
         IntStream.range(0, Math.min(weatherInfoDtoList.size(), weatherFavoriteCities.length))
-                .forEach(i -> renderCity(weatherInfoDtoList.get(i), weatherFavoriteCities[i], iconFavoriteCities[i], tempFavoriteCities[i], descFavoriteCities[i]));
+                .forEach(i -> renderCity(weatherInfoDtoList.get(i), weatherFavoriteCities[i], iconFavoriteCities[i], tempFavoriteCities[i], descFavoriteCities[i], currentIds[i]));
     }
 
-    private void renderCity(WeatherInfoDto weatherInfoDto, Text cityText, ImageView iconImage, Text tempText, Text descText) {
+    private void renderCity(WeatherInfoDto weatherInfoDto, Text cityText, ImageView iconImage, Text tempText, Text descText, Label currentId) {
         if (weatherInfoDto != null) {
             cityText.setText(weatherInfoDto.getName());
             iconImage.setImage(new Image(getIconUrl(weatherInfoDto.getWeather().get(0).getIcon())));
             tempText.setText(Math.round(weatherInfoDto.getMain().getTemp()) + "°C");
             descText.setText(weatherInfoDto.getWeather().get(0).getDescription());
+            currentId.setText(String.valueOf(weatherInfoDto.getCurrentId()));
         } else {
             cityText.setText("No data available");
         }

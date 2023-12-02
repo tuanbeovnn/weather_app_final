@@ -67,7 +67,7 @@
                         <Insets bottom="10.0" left="50.0" right="50.0" top="30.0" />
                     </VBox.margin>
                     <children>
-                        <AnchorPane fx:id="historyPane" prefHeight="318.4" prefWidth="1101.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="historyPane" prefHeight="318.4" prefWidth="1101.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
                                 <AnchorPane layoutX="13.0" layoutY="48.8" prefHeight="270.0" prefWidth="1070.0" style="-fx-background-color: #FFFFFF; -fx-border-radius: 20px;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="49.0">
                                     <children>
@@ -115,6 +115,7 @@
                                                                         <Font size="14.0" />
                                                                     </font>
                                                                 </Text>
+                                                                <Label fx:id="current_history_id1" text="Label" disable="true" visible="false"/>
                                                             </children>
                                                         </HBox>
                                                     </children>
@@ -155,6 +156,7 @@
                                                                         <Font size="14.0" />
                                                                     </font>
                                                                 </Text>
+                                                                <Label fx:id="current_history_id2" text="Label" disable="true" visible="false"/>
                                                             </children>
                                                         </HBox>
                                                     </children>
@@ -198,6 +200,7 @@
                                                                         <Insets />
                                                                     </HBox.margin>
                                                                 </Text>
+                                                                <Label fx:id="current_history_id3" text="Label" disable="true" visible="false"/>
                                                             </children>
                                                         </HBox>
                                                     </children>
@@ -238,6 +241,7 @@
                                                                         <Font size="14.0" />
                                                                     </font>
                                                                 </Text>
+                                                                <Label fx:id="current_history_id4" text="Label" disable="true" visible="false"/>
                                                             </children>
                                                         </HBox>
                                                     </children>
@@ -278,6 +282,7 @@
                                                                         <Font size="14.0" />
                                                                     </font>
                                                                 </Text>
+                                                                <Label fx:id="current_history_id5" text="Label" disable="true" visible="false"/>
                                                             </children>
                                                         </HBox>
                                                     </children>
@@ -318,6 +323,7 @@
                                                                         <Font size="14.0" />
                                                                     </font>
                                                                 </Text>
+                                                                <Label fx:id="current_history_id6" text="Label" disable="true" visible="false"/>
                                                             </children>
                                                         </HBox>
                                                     </children>
@@ -393,6 +399,7 @@
                                                                         <Image url="@/icon-weather-detail/added-to-favorites.png" />
                                                                     </image>
                                                                 </ImageView>
+                                                                <Label fx:id="current_favorite_id1" text="Label" disable="true" visible="false"/>
                                                             </children>
                                                         </HBox>
                                                     </children>
@@ -438,6 +445,7 @@
                                                                         <Image url="@/icon-weather-detail/added-to-favorites.png" />
                                                                     </image>
                                                                 </ImageView>
+                                                                <Label fx:id="current_favorite_id4" text="Label" disable="true" visible="false"/>
                                                             </children>
                                                         </HBox>
                                                     </children>
@@ -486,6 +494,7 @@
                                                                         <Image url="@/icon-weather-detail/added-to-favorites.png" />
                                                                     </image>
                                                                 </ImageView>
+                                                                <Label fx:id="current_favorite_id2" text="Label" disable="true" visible="false"/>
                                                             </children>
                                                         </HBox>
                                                     </children>
@@ -531,6 +540,7 @@
                                                                         <Image url="@/icon-weather-detail/added-to-favorites.png" />
                                                                     </image>
                                                                 </ImageView>
+                                                                <Label fx:id="current_favorite_id5" text="Label" disable="true" visible="false"/>
                                                             </children>
                                                         </HBox>
                                                     </children>
@@ -576,6 +586,7 @@
                                                                         <Image url="@/icon-weather-detail/added-to-favorites.png" />
                                                                     </image>
                                                                 </ImageView>
+                                                                <Label fx:id="current_favorite_id3" text="Label" disable="true" visible="false"/>
                                                             </children>
                                                         </HBox>
                                                     </children>
@@ -621,6 +632,7 @@
                                                                         <Image url="@/icon-weather-detail/added-to-favorites.png" />
                                                                     </image>
                                                                 </ImageView>
+                                                                <Label fx:id="current_favorite_id6" text="Label" disable="true" visible="false"/>
                                                             </children>
                                                         </HBox>
                                                     </children>
@@ -643,7 +655,7 @@
                                 </AnchorPane>
                             </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="title" prefHeight="314.0" prefWidth="1101.0">
+                        <AnchorPane fx:id="title" prefHeight="314.0" prefWidth="1101.0" visible="false">
                             <children>
                                 <ImageView fx:id="titleBg" fitHeight="320.0" fitWidth="1100.0" pickOnBounds="true" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
                                     <image>
