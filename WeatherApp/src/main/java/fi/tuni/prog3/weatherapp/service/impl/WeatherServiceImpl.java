@@ -73,30 +73,39 @@ public class WeatherServiceImpl implements iAPI {
 
     @Override
     public List<WeatherInfoDto> getListHistory() {
-        var weatherInfoDtoList = weatherHistoryRepository.findAllByCreatedDate();
+        var weatherHistoryEntityList = weatherHistoryRepository.findAllByCreatedDate();
 
-        if (weatherInfoDtoList == null) {
-            logger.error("Get list history unsuccessfully {}", weatherInfoDtoList);
+        if (weatherHistoryEntityList == null) {
+            logger.error("Get list history unsuccessfully {}", weatherHistoryEntityList);
             return Collections.emptyList();
         }
-        logger.info("Get list history successfully {}", weatherInfoDtoList);
-        return weatherInfoDtoList.stream()
-                .map(weatherHistoryEntity -> GsonUtils.stringToObject(weatherHistoryEntity.getDetails(), WeatherInfoDto.class))
+        logger.info("Get list history successfully {}", weatherHistoryEntityList.size());
+
+        return weatherHistoryEntityList.stream()
+                .map(weatherHistoryEntity -> {
+                    WeatherInfoDto weatherInfoDto = GsonUtils.stringToObject(weatherHistoryEntity.getDetails(), WeatherInfoDto.class);
+                    weatherInfoDto.setCurrentId(weatherHistoryEntity.getId());
+                    return weatherInfoDto;
+                })
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<WeatherInfoDto> getListFavorite() {
-        var weatherInfoDtoList = weatherHistoryRepository.findAllByFavoriteCreatedDate();
+        var weatherFavoriteList = weatherHistoryRepository.findAllByFavoriteCreatedDate();
 
-        if (weatherInfoDtoList == null) {
-            logger.error("Get list favorite unsuccessfully {}", weatherInfoDtoList);
+        if (weatherFavoriteList == null) {
+            logger.error("Get list favorite unsuccessfully {}", weatherFavoriteList);
             return Collections.emptyList();
         }
-        logger.info("Get list favorite successfully {}", weatherInfoDtoList);
+        logger.info("Get list favorite successfully {}", weatherFavoriteList.size());
 
-        return weatherInfoDtoList.stream()
-                .map(weatherHistoryEntity -> GsonUtils.stringToObject(weatherHistoryEntity.getDetails(), WeatherInfoDto.class))
+        return weatherFavoriteList.stream()
+                .map(weatherHistoryEntity -> {
+                    WeatherInfoDto weatherInfoDto = GsonUtils.stringToObject(weatherHistoryEntity.getDetails(), WeatherInfoDto.class);
+                    weatherInfoDto.setCurrentId(weatherHistoryEntity.getId());
+                    return weatherInfoDto;
+                })
                 .collect(Collectors.toList());
     }
 
