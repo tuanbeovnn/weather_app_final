@@ -27,7 +27,6 @@ import org.springframework.stereotype.Component;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
-import java.util.stream.IntStream;
 
 import static fi.tuni.prog3.weatherapp.util.DateTimeUtil.formatLocalDateTime;
 
@@ -40,8 +39,11 @@ public class MainViewController implements Initializable {
     public static final String OPEN_WEATHER_URL_IMG = "https://openweathermap.org/img/wn/";
     private final iAPI iAPI;
 
-    public MainViewController(iAPI iAPI) {
+    private final WeatherRenderer weatherRenderer;
+
+    public MainViewController(iAPI iAPI, WeatherRenderer weatherRenderer) {
         this.iAPI = iAPI;
+        this.weatherRenderer = weatherRenderer;
     }
 
     @FXML
@@ -141,6 +143,8 @@ public class MainViewController implements Initializable {
             renderDataFromForeCastApi(foreCastInfoDto);
             locationErrorMessage.setText("");
             btn_add_favorite.setVisible(true);
+            Image newImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(IMAGE_URL_ADD_TO_FAVOURITE)));
+            btn_add_favorite.setImage(newImage);
             title.setVisible(true);
         } else {
             locationErrorMessage.setText("Invalid location. Please try again.");
@@ -281,9 +285,7 @@ public class MainViewController implements Initializable {
         Text[] descHistoryCities = {desc_history1, desc_history2, desc_history3, desc_history4, desc_history5, desc_history6};
         Label[] currentIds = {current_history_id1, current_history_id2, current_history_id3, current_history_id4, current_history_id5, current_history_id6};
 
-
-        IntStream.range(0, Math.min(weatherInfoDtoList.size(), weatherHistoryCities.length))
-                .forEach(i -> renderCity(weatherInfoDtoList.get(i), weatherHistoryCities[i], iconHistoryCities[i], tempHistoryCities[i], descHistoryCities[i], currentIds[i]));
+        weatherRenderer.renderHistory(weatherInfoDtoList, weatherHistoryCities, iconHistoryCities, tempHistoryCities, descHistoryCities, currentIds);
     }
 
     private void renderFavorite() {
@@ -294,8 +296,7 @@ public class MainViewController implements Initializable {
         Text[] descFavoriteCities = {desc_favou1, desc_favou2, desc_favou3, desc_favou4, desc_favou5, desc_favou6};
         Label[] currentIds = {current_favorite_id1, current_favorite_id2, current_favorite_id3, current_favorite_id4, current_favorite_id5, current_favorite_id6};
 
-        IntStream.range(0, Math.min(weatherInfoDtoList.size(), weatherFavoriteCities.length))
-                .forEach(i -> renderCity(weatherInfoDtoList.get(i), weatherFavoriteCities[i], iconFavoriteCities[i], tempFavoriteCities[i], descFavoriteCities[i], currentIds[i]));
+        weatherRenderer.renderFavorite(weatherInfoDtoList, weatherFavoriteCities, iconFavoriteCities, tempFavoriteCities, descFavoriteCities, currentIds);
     }
 
     private void renderDataItem(ForeCastDto foreCastDto, int index) {
@@ -323,22 +324,6 @@ public class MainViewController implements Initializable {
         for (int i = 0; i < 5; i++) {
             renderDataItem(foreCastInfoDtos.getList().get(7 + i * 8), i + 1);
         }
-    }
-
-    private void renderCity(WeatherInfoDto weatherInfoDto, Text cityText, ImageView iconImage, Text tempText, Text descText, Label currentId) {
-        if (weatherInfoDto != null) {
-            cityText.setText(weatherInfoDto.getName());
-            iconImage.setImage(new Image(getIconUrl(weatherInfoDto.getWeather().get(0).getIcon())));
-            tempText.setText(Math.round(weatherInfoDto.getMain().getTemp()) + "°C");
-            descText.setText(weatherInfoDto.getWeather().get(0).getDescription());
-            currentId.setText(String.valueOf(weatherInfoDto.getCurrentId()));
-        } else {
-            cityText.setText("No data available");
-        }
-    }
-
-    private String getIconUrl(String iconCode) {
-        return OPEN_WEATHER_URL_IMG + iconCode + "@2x.png";
     }
 
 }
