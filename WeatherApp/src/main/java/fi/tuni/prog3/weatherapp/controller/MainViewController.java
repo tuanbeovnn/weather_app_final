@@ -157,104 +157,69 @@ public class MainViewController implements Initializable {
         title.setVisible(true);
         historyPane.setVisible(false);
         favouritePane.setVisible(false);
-        var weatherInfoDto = iAPI.getCurrentWeather("");    
+        btn_add_favorite.setVisible(false);
+        var weatherInfoDto = iAPI.getCurrentWeather("");
         renderDataFromWeatherApi(weatherInfoDto);
     }
 
     @FXML
     void get_favou1(MouseEvent event) {
-        var id = Long.parseLong(current_favorite_id1.getText());
-        WeatherInfoDto weatherInfoDto = iAPI.findById(id);
-        renderDataFromWeatherApi(weatherInfoDto);
-        title.setVisible(true);
+        handleFavoriteClick(current_favorite_id1);
     }
 
     @FXML
     void get_favou2(MouseEvent event) {
-        var id = Long.parseLong(current_favorite_id2.getText());
-        WeatherInfoDto weatherInfoDto = iAPI.findById(id);
-        renderDataFromWeatherApi(weatherInfoDto);
-        title.setVisible(true);
+        handleFavoriteClick(current_favorite_id2);
     }
 
     @FXML
     void get_favou3(MouseEvent event) {
-        var id = Long.parseLong(current_favorite_id3.getText());
-        WeatherInfoDto weatherInfoDto = iAPI.findById(id);
-        renderDataFromWeatherApi(weatherInfoDto);
-        title.setVisible(true);
+        handleFavoriteClick(current_favorite_id3);
     }
 
     @FXML
     void get_favou4(MouseEvent event) {
-        var id = Long.parseLong(current_favorite_id4.getText());
-        WeatherInfoDto weatherInfoDto = iAPI.findById(id);
-        renderDataFromWeatherApi(weatherInfoDto);
-        title.setVisible(true);
+        handleFavoriteClick(current_favorite_id4);
     }
 
     @FXML
     void get_favou5(MouseEvent event) {
-        var id = Long.parseLong(current_favorite_id5.getText());
-        WeatherInfoDto weatherInfoDto = iAPI.findById(id);
-        renderDataFromWeatherApi(weatherInfoDto);
-        title.setVisible(true);
+        handleFavoriteClick(current_favorite_id5);
     }
 
     @FXML
     void get_favou6(MouseEvent event) {
-        var id = Long.parseLong(current_favorite_id6.getText());
-        WeatherInfoDto weatherInfoDto = iAPI.findById(id);
-        renderDataFromWeatherApi(weatherInfoDto);
-        title.setVisible(true);
+        handleFavoriteClick(current_favorite_id6);
     }
 
     @FXML
     void get_his1(MouseEvent event) {
-        var id = Long.parseLong(current_history_id1.getText());
-        WeatherInfoDto weatherInfoDto = iAPI.findById(id);
-        renderDataFromWeatherApi(weatherInfoDto);
-        title.setVisible(true);
+        handleHistoryClick(current_history_id1);
     }
 
     @FXML
     void get_his2(MouseEvent event) {
-        var id = Long.parseLong(current_history_id2.getText());
-        WeatherInfoDto weatherInfoDto = iAPI.findById(id);
-        renderDataFromWeatherApi(weatherInfoDto);
-        title.setVisible(true);
+        handleHistoryClick(current_history_id2);
     }
 
     @FXML
     void get_his3(MouseEvent event) {
-        var id = Long.parseLong(current_history_id3.getText());
-        WeatherInfoDto weatherInfoDto = iAPI.findById(id);
-        renderDataFromWeatherApi(weatherInfoDto);
-        title.setVisible(true);
+        handleHistoryClick(current_history_id3);
     }
 
     @FXML
     void get_his4(MouseEvent event) {
-        var id = Long.parseLong(current_history_id4.getText());
-        WeatherInfoDto weatherInfoDto = iAPI.findById(id);
-        renderDataFromWeatherApi(weatherInfoDto);
-        title.setVisible(true);
+        handleHistoryClick(current_history_id4);
     }
 
     @FXML
     void get_his5(MouseEvent event) {
-        var id = Long.parseLong(current_history_id5.getText());
-        WeatherInfoDto weatherInfoDto = iAPI.findById(id);
-        renderDataFromWeatherApi(weatherInfoDto);
-        title.setVisible(true);
+        handleHistoryClick(current_history_id5);
     }
 
     @FXML
     void get_his6(MouseEvent event) {
-        var id = Long.parseLong(current_history_id6.getText());
-        WeatherInfoDto weatherInfoDto = iAPI.findById(id);
-        renderDataFromWeatherApi(weatherInfoDto);
-        title.setVisible(true);
+        handleHistoryClick(current_history_id6);
     }
 
     private void renderDataFromWeatherApi(WeatherInfoDto weatherInfoDto) {
@@ -328,4 +293,21 @@ public class MainViewController implements Initializable {
         }
     }
 
+    private void handleFavoriteClick(Label currentFavoriteId) {
+        var id = Long.parseLong(currentFavoriteId.getText());
+        WeatherInfoDto weatherInfoDto = iAPI.findById(id);
+        renderDataFromWeatherApi(weatherInfoDto);
+        title.setVisible(true);
+        btn_add_favorite.setVisible(true);
+        Image newImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(IMAGE_URL_ADDED_FAVOURITE)));
+        btn_add_favorite.setImage(newImage);
+    }
+
+    private void handleHistoryClick(Label currentFavoriteId) {
+        var id = Long.parseLong(current_history_id1.getText());
+        WeatherInfoDto weatherInfoDto = iAPI.findById(id);
+        renderDataFromWeatherApi(weatherInfoDto);
+        title.setVisible(true);
+        btn_add_favorite.setVisible(false);
+    }
 }
