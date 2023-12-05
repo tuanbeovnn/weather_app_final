@@ -157,6 +157,8 @@ public class MainViewController implements Initializable {
         title.setVisible(true);
         historyPane.setVisible(false);
         favouritePane.setVisible(false);
+        var weatherInfoDto = iAPI.getCurrentWeather("");    
+        renderDataFromWeatherApi(weatherInfoDto);
     }
 
     @FXML

@@ -115,6 +115,7 @@ public class WeatherServiceImpl implements iAPI {
                 .orElseThrow(() -> new WeatherException(ErrorCode.ID_NOT_FOUND));
 
         weatherHistoryEntity.setFavorite(isFavorite);
+        logger.info("Update status successfully with id {}", id);
         weatherHistoryRepository.save(weatherHistoryEntity);
     }
 
