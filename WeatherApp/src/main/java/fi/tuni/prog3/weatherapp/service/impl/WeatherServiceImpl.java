@@ -110,12 +110,12 @@ public class WeatherServiceImpl implements iAPI {
     }
 
     @Override
-    public void updateFavoriteStatus(Long id, boolean isFavorite) {
-        var weatherHistoryEntity = weatherHistoryRepository.findById(id)
-                .orElseThrow(() -> new WeatherException(ErrorCode.ID_NOT_FOUND));
-
-        weatherHistoryEntity.setFavorite(isFavorite);
-        weatherHistoryRepository.save(weatherHistoryEntity);
+    public void updateFavoriteStatus(Long id, boolean isFavorite) {    
+      var weatherHistoryEntity = weatherHistoryRepository.findById(id).orElseThrow(() -> 
+      new WeatherException(ErrorCode.ID_NOT_FOUND));    
+      weatherHistoryEntity.setFavorite(isFavorite);    
+      logger.info("Update status successfully with id {}", id);    
+      weatherHistoryRepository.save(weatherHistoryEntity);
     }
 
     @Override
