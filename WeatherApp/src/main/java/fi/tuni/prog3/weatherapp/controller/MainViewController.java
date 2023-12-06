@@ -222,6 +222,10 @@ public class MainViewController implements Initializable {
         handleHistoryClick(current_history_id6);
     }
 
+
+    /**
+     * This method is helping for render weatherAPI from open API.
+     */
     private void renderDataFromWeatherApi(WeatherInfoDto weatherInfoDto) {
         current_location.setText(weatherInfoDto.getName());
         current_id.setText(weatherInfoDto.getCurrentId() == null ? "" : weatherInfoDto.getCurrentId().toString());
@@ -255,6 +259,9 @@ public class MainViewController implements Initializable {
         weatherRenderer.renderHistory(weatherInfoDtoList, weatherHistoryCities, iconHistoryCities, tempHistoryCities, descHistoryCities, currentIds);
     }
 
+    /**
+     * This method is helping for render list favorite
+     */
     private void renderFavorite() {
         var weatherInfoDtoList = iAPI.getListFavorite();
         Text[] weatherFavoriteCities = {city_favou1, city_favou2, city_favou3, city_favou4, city_favou5, city_favou6};
@@ -266,6 +273,9 @@ public class MainViewController implements Initializable {
         weatherRenderer.renderFavorite(weatherInfoDtoList, weatherFavoriteCities, iconFavoriteCities, tempFavoriteCities, descFavoriteCities, currentIds);
     }
 
+    /**
+     * This method is helping for render current data
+     */
     private void renderDataItem(ForeCastDto foreCastDto, int index) {
         Text[] dateForecasts = {dateForecast1, dateForecast2, dateForecast3, dateForecast4, dateForecast5};
         Text[] timeForecasts = {timeForecast1, timeForecast2, timeForecast3, timeForecast4, timeForecast5};
@@ -293,6 +303,9 @@ public class MainViewController implements Initializable {
         }
     }
 
+    /**
+     * This method is helping for handling click favorite
+     */
     private void handleFavoriteClick(Label currentFavoriteId) {
         var id = Long.parseLong(currentFavoriteId.getText());
         WeatherInfoDto weatherInfoDto = iAPI.findById(id);
@@ -303,6 +316,10 @@ public class MainViewController implements Initializable {
         btn_add_favorite.setImage(newImage);
     }
 
+
+    /**
+     * This method is helping for handling click history
+     */
     private void handleHistoryClick(Label currentFavoriteId) {
         var id = Long.parseLong(current_history_id1.getText());
         WeatherInfoDto weatherInfoDto = iAPI.findById(id);

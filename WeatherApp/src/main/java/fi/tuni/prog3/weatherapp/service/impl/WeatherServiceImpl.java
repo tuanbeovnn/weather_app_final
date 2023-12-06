@@ -30,6 +30,12 @@ public class WeatherServiceImpl implements iAPI {
         this.weatherHistoryRepository = weatherHistoryRepository;
     }
 
+    /**
+     * This method using for looking a new location
+     *
+     * @param loc
+     * @return
+     */
     @Override
     public WeatherInfoDto lookUpLocation(String loc) {
         try {
@@ -50,6 +56,12 @@ public class WeatherServiceImpl implements iAPI {
         }
     }
 
+    /**
+     * This method using for getting a current location, by default is Vaasa location
+     *
+     * @param location
+     * @return
+     */
     @Override
     public WeatherInfoDto getCurrentWeather(String location) {
         if (location == null || location.equals("")) {
@@ -58,6 +70,12 @@ public class WeatherServiceImpl implements iAPI {
         return weatherApi.weatherInfo(location);
     }
 
+    /**
+     * This method is using for get the fore cast
+     *
+     * @param location
+     * @return
+     */
     @Override
     public ForeCastInfoDto getForecast(String location) {
         try {
@@ -71,6 +89,11 @@ public class WeatherServiceImpl implements iAPI {
         }
     }
 
+    /**
+     * This method is using for get the list history search
+     *
+     * @return
+     */
     @Override
     public List<WeatherInfoDto> getListHistory() {
         var weatherHistoryEntityList = weatherHistoryRepository.findAllByCreatedDate();
@@ -90,6 +113,11 @@ public class WeatherServiceImpl implements iAPI {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * This method is using for get list favorite when client want to see their favorite
+     *
+     * @return
+     */
     @Override
     public List<WeatherInfoDto> getListFavorite() {
         var weatherFavoriteList = weatherHistoryRepository.findAllByFavoriteCreatedDate();
@@ -109,6 +137,13 @@ public class WeatherServiceImpl implements iAPI {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * This method is using for update status of favorite
+     *
+     * @param id
+     * @param isFavorite
+     */
+
     @Override
     public void updateFavoriteStatus(Long id, boolean isFavorite) {
         var weatherHistoryEntity = weatherHistoryRepository.findById(id)
@@ -119,6 +154,12 @@ public class WeatherServiceImpl implements iAPI {
         weatherHistoryRepository.save(weatherHistoryEntity);
     }
 
+    /**
+     * This method is using for findById of the weather.
+     *
+     * @param id
+     * @return
+     */
     @Override
     public WeatherInfoDto findById(Long id) {
         var weatherHistoryEntity = weatherHistoryRepository.findById(id)
