@@ -3,6 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -23,10 +25,10 @@
                 <Image url="https://s.w-x.co/WeatherImages_Web/WeatherImage_Sunny-day_4.jpg?crop=16:9&amp;width=1200&amp;height=900&amp;format=pjpg&amp;auto=webp&amp;quality=100" />
             </image>
         </ImageView>
-        <AnchorPane layoutX="-127.0" layoutY="-86.0" opacity="0.5" prefHeight="96.0" prefWidth="1200.0" style="-fx-background-color: #0E1C2F;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+        <AnchorPane layoutX="-127.0" layoutY="-86.0" opacity="0.9" prefHeight="96.0" prefWidth="1200.0" style="-fx-background-color: #191B36;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
         <VBox alignment="TOP_CENTER" layoutX="-1.0" layoutY="7.0" prefHeight="900.0" prefWidth="1200.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <AnchorPane>
+                <AnchorPane opacity="0.9">
                     <VBox.margin>
                         <Insets left="50.0" right="50.0" />
                     </VBox.margin>
@@ -41,12 +43,12 @@
                                 <Image url="@/icon-weather-detail/ripple.gif" />
                             </image>
                         </ImageView>
-                        <Button fx:id="btn_history" layoutX="826.0" layoutY="7.0" mnemonicParsing="false" onAction="#showHistory" text="Recently Viewed">
+                        <Button fx:id="btn_history" layoutX="772.0" layoutY="7.0" mnemonicParsing="false" onAction="#showHistory" text="History">
                             <font>
                                 <Font size="18.0" />
                             </font>
                         </Button>
-                        <Button fx:id="btn_favorite" layoutX="997.0" layoutY="7.0" mnemonicParsing="false" onAction="#showFavorite" text="Favourite">
+                        <Button fx:id="btn_favorite" layoutX="886.0" layoutY="7.0" mnemonicParsing="false" onAction="#showFavorite" text="Favourite">
                             <font>
                                 <Font size="18.0" />
                             </font>
@@ -55,7 +57,7 @@
                             <font>
                                 <Font size="18.0" />
                             </font></Label>
-                        <Button fx:id="btn_current" layoutX="726.0" layoutY="7.0" mnemonicParsing="false" onAction="#showCurrent" text="Current">
+                        <Button fx:id="btn_current" layoutX="649.0" layoutY="7.0" mnemonicParsing="false" onAction="#showCurrent" text="Current">
                             <font>
                                 <Font size="18.0" />
                             </font>
@@ -67,7 +69,7 @@
                         <Insets bottom="10.0" left="50.0" right="50.0" top="30.0" />
                     </VBox.margin>
                     <children>
-                        <AnchorPane fx:id="historyPane" prefHeight="318.4" prefWidth="1101.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="historyPane" prefHeight="318.4" prefWidth="1101.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
                                 <AnchorPane layoutX="13.0" layoutY="48.8" prefHeight="270.0" prefWidth="1070.0" style="-fx-background-color: #FFFFFF; -fx-border-radius: 20px;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="49.0">
                                     <children>
@@ -115,7 +117,7 @@
                                                                         <Font size="14.0" />
                                                                     </font>
                                                                 </Text>
-                                                                <Label fx:id="current_history_id1" text="Label" disable="true" visible="false"/>
+                                                                <Label fx:id="current_history_id1" disable="true" text="Label" visible="false" />
                                                             </children>
                                                         </HBox>
                                                     </children>
@@ -156,7 +158,7 @@
                                                                         <Font size="14.0" />
                                                                     </font>
                                                                 </Text>
-                                                                <Label fx:id="current_history_id2" text="Label" disable="true" visible="false"/>
+                                                                <Label fx:id="current_history_id2" disable="true" text="Label" visible="false" />
                                                             </children>
                                                         </HBox>
                                                     </children>
@@ -200,7 +202,7 @@
                                                                         <Insets />
                                                                     </HBox.margin>
                                                                 </Text>
-                                                                <Label fx:id="current_history_id3" text="Label" disable="true" visible="false"/>
+                                                                <Label fx:id="current_history_id3" disable="true" text="Label" visible="false" />
                                                             </children>
                                                         </HBox>
                                                     </children>
@@ -241,7 +243,7 @@
                                                                         <Font size="14.0" />
                                                                     </font>
                                                                 </Text>
-                                                                <Label fx:id="current_history_id4" text="Label" disable="true" visible="false"/>
+                                                                <Label fx:id="current_history_id4" disable="true" text="Label" visible="false" />
                                                             </children>
                                                         </HBox>
                                                     </children>
@@ -282,7 +284,7 @@
                                                                         <Font size="14.0" />
                                                                     </font>
                                                                 </Text>
-                                                                <Label fx:id="current_history_id5" text="Label" disable="true" visible="false"/>
+                                                                <Label fx:id="current_history_id5" disable="true" text="Label" visible="false" />
                                                             </children>
                                                         </HBox>
                                                     </children>
@@ -323,7 +325,7 @@
                                                                         <Font size="14.0" />
                                                                     </font>
                                                                 </Text>
-                                                                <Label fx:id="current_history_id6" text="Label" disable="true" visible="false"/>
+                                                                <Label fx:id="current_history_id6" disable="true" text="Label" visible="false" />
                                                             </children>
                                                         </HBox>
                                                     </children>
@@ -335,7 +337,7 @@
                                         </GridPane>
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane blendMode="SRC_ATOP" opacity="0.51" prefHeight="52.0" prefWidth="1070.0" style="-fx-background-color: #191B36;" AnchorPane.bottomAnchor="267.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <AnchorPane blendMode="SRC_ATOP" opacity="0.9" prefHeight="52.0" prefWidth="1070.0" style="-fx-background-color: #191B36;" AnchorPane.bottomAnchor="267.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <Label fx:id="current_location1" alignment="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="50.0" prefWidth="215.0" text="Recently Viewed" textFill="WHITE">
                                             <font>
@@ -399,7 +401,7 @@
                                                                         <Image url="@/icon-weather-detail/added-to-favorites.png" />
                                                                     </image>
                                                                 </ImageView>
-                                                                <Label fx:id="current_favorite_id1" text="Label" disable="true" visible="false"/>
+                                                                <Label fx:id="current_favorite_id1" disable="true" text="Label" visible="false" />
                                                             </children>
                                                         </HBox>
                                                     </children>
@@ -445,7 +447,7 @@
                                                                         <Image url="@/icon-weather-detail/added-to-favorites.png" />
                                                                     </image>
                                                                 </ImageView>
-                                                                <Label fx:id="current_favorite_id4" text="Label" disable="true" visible="false"/>
+                                                                <Label fx:id="current_favorite_id4" disable="true" text="Label" visible="false" />
                                                             </children>
                                                         </HBox>
                                                     </children>
@@ -494,7 +496,7 @@
                                                                         <Image url="@/icon-weather-detail/added-to-favorites.png" />
                                                                     </image>
                                                                 </ImageView>
-                                                                <Label fx:id="current_favorite_id2" text="Label" disable="true" visible="false"/>
+                                                                <Label fx:id="current_favorite_id2" disable="true" text="Label" visible="false" />
                                                             </children>
                                                         </HBox>
                                                     </children>
@@ -540,7 +542,7 @@
                                                                         <Image url="@/icon-weather-detail/added-to-favorites.png" />
                                                                     </image>
                                                                 </ImageView>
-                                                                <Label fx:id="current_favorite_id5" text="Label" disable="true" visible="false"/>
+                                                                <Label fx:id="current_favorite_id5" disable="true" text="Label" visible="false" />
                                                             </children>
                                                         </HBox>
                                                     </children>
@@ -586,7 +588,7 @@
                                                                         <Image url="@/icon-weather-detail/added-to-favorites.png" />
                                                                     </image>
                                                                 </ImageView>
-                                                                <Label fx:id="current_favorite_id3" text="Label" disable="true" visible="false"/>
+                                                                <Label fx:id="current_favorite_id3" disable="true" text="Label" visible="false" />
                                                             </children>
                                                         </HBox>
                                                     </children>
@@ -632,7 +634,7 @@
                                                                         <Image url="@/icon-weather-detail/added-to-favorites.png" />
                                                                     </image>
                                                                 </ImageView>
-                                                                <Label fx:id="current_favorite_id6" text="Label" disable="true" visible="false"/>
+                                                                <Label fx:id="current_favorite_id6" disable="true" text="Label" visible="false" />
                                                             </children>
                                                         </HBox>
                                                     </children>
@@ -644,7 +646,7 @@
                                         </GridPane>
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane blendMode="SRC_ATOP" opacity="0.51" prefHeight="52.0" prefWidth="1070.0" style="-fx-background-color: #191B36;" AnchorPane.bottomAnchor="267.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <AnchorPane blendMode="SRC_ATOP" opacity="0.9" prefHeight="52.0" prefWidth="1070.0" style="-fx-background-color: #191B36;" AnchorPane.bottomAnchor="267.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <Label fx:id="current_location2" alignment="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="50.0" prefWidth="176.0" text="Favourite" textFill="WHITE">
                                             <font>
@@ -655,14 +657,14 @@
                                 </AnchorPane>
                             </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="title" prefHeight="314.0" prefWidth="1101.0" visible="false">
+                        <AnchorPane fx:id="title" prefHeight="314.0" prefWidth="1101.0">
                             <children>
                                 <ImageView fx:id="titleBg" fitHeight="320.0" fitWidth="1100.0" pickOnBounds="true" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
                                     <image>
                                         <Image url="https://s.w-x.co/WeatherImages_Web/WeatherImage_Sunny-day_4.jpg?crop=16:9&amp;width=1200&amp;height=900&amp;format=pjpg&amp;auto=webp&amp;quality=100" />
                                     </image>
                                 </ImageView>
-                                <AnchorPane blendMode="SRC_ATOP" opacity="0.51" prefHeight="50.0" prefWidth="1100.0" style="-fx-background-color: #191B36;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <AnchorPane blendMode="SRC_ATOP" opacity="0.9" prefHeight="50.0" prefWidth="1100.0" style="-fx-background-color: #191B36;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <Label fx:id="time" layoutX="459.3999999999999" layoutY="1.0" prefHeight="50.0" prefWidth="215.0" text="As of 16:38 IST" textFill="WHITE" AnchorPane.rightAnchor="431.0">
                                             <font>
@@ -689,7 +691,7 @@
                                                 <Font name="System Bold" size="15.0" />
                                             </font>
                                         </Label>
-                              <Label fx:id="current_id" disable="true" layoutX="716.0" layoutY="18.0" textFill="RED" visible="false" />
+                                        <Label fx:id="current_id" disable="true" layoutX="716.0" layoutY="18.0" textFill="RED" visible="false" />
                                     </children>
                                 </AnchorPane>
                                 <AnchorPane prefHeight="266.0" prefWidth="414.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="692.0" AnchorPane.topAnchor="49.0">
@@ -897,11 +899,11 @@
                                                         <Font size="18.0" />
                                                     </font>
                                                 </Text>
-                                    <Text fx:id="timeForecast1" layoutX="8.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="8:00 PM" textAlignment="CENTER" wrappingWidth="185.0">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Text>
+                                                <Text fx:id="timeForecast1" layoutX="8.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="8:00 PM" textAlignment="CENTER" wrappingWidth="185.0">
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                </Text>
                                             </children>
                                         </AnchorPane>
                                         <AnchorPane prefHeight="142.0" prefWidth="199.0">
@@ -947,11 +949,11 @@
                                                         <Font size="18.0" />
                                                     </font>
                                                 </Text>
-                                    <Text fx:id="timeForecast2" layoutX="8.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="9:00 PM" textAlignment="CENTER" wrappingWidth="185.0">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Text>
+                                                <Text fx:id="timeForecast2" layoutX="8.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="9:00 PM" textAlignment="CENTER" wrappingWidth="185.0">
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                </Text>
                                             </children>
                                         </AnchorPane>
                                         <AnchorPane prefHeight="106.0" prefWidth="199.0">
@@ -997,11 +999,11 @@
                                                         <Font size="18.0" />
                                                     </font>
                                                 </Text>
-                                    <Text fx:id="timeForecast3" layoutX="8.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10:00 PM" textAlignment="CENTER" wrappingWidth="185.0">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Text>
+                                                <Text fx:id="timeForecast3" layoutX="8.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10:00 PM" textAlignment="CENTER" wrappingWidth="185.0">
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                </Text>
                                             </children>
                                         </AnchorPane>
                                         <AnchorPane prefHeight="109.0" prefWidth="199.0">
@@ -1047,11 +1049,11 @@
                                                         <Font size="18.0" />
                                                     </font>
                                                 </Text>
-                                    <Text fx:id="timeForecast4" layoutX="8.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="11:00 PM" textAlignment="CENTER" wrappingWidth="185.0">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Text>
+                                                <Text fx:id="timeForecast4" layoutX="8.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="11:00 PM" textAlignment="CENTER" wrappingWidth="185.0">
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                </Text>
                                             </children>
                                         </AnchorPane>
                                         <AnchorPane prefHeight="138.0" prefWidth="199.0">
@@ -1097,11 +1099,11 @@
                                                         <Font size="18.0" />
                                                     </font>
                                                 </Text>
-                                    <Text fx:id="timeForecast5" layoutX="8.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00:00 AM" textAlignment="CENTER" wrappingWidth="185.0">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Text>
+                                                <Text fx:id="timeForecast5" layoutX="8.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00:00 AM" textAlignment="CENTER" wrappingWidth="185.0">
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                </Text>
                                             </children>
                                         </AnchorPane>
                                         <AnchorPane prefHeight="134.0" prefWidth="199.0">
