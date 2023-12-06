@@ -1,9 +1,5 @@
 package fi.tuni.prog3.weatherapp.dto;
 
-
-import lombok.Getter;
-import lombok.Setter;
-
 public class SysDto {
     private int type;
     private Long id;

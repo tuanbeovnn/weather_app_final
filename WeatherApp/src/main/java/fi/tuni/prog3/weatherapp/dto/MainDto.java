@@ -1,9 +1,5 @@
 package fi.tuni.prog3.weatherapp.dto;
 
-
-import lombok.Getter;
-import lombok.Setter;
-
 public class MainDto {
     private double temp;
     private double feels_like;

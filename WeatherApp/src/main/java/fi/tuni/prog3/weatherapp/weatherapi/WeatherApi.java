@@ -1,7 +1,5 @@
 package fi.tuni.prog3.weatherapp.weatherapi;
 
-
-
 import fi.tuni.prog3.weatherapp.dto.ForeCastInfoDto;
 import fi.tuni.prog3.weatherapp.dto.WeatherInfoDto;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,11 +1,5 @@
 package fi.tuni.prog3.weatherapp.dto;
 
-
-import lombok.Getter;
-import lombok.Setter;
-
-import java.util.List;
-
 public class WeatherDto {
     private Long id;
     private String main;
