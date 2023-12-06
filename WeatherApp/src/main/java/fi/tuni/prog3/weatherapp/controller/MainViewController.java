@@ -30,6 +30,10 @@ import java.util.ResourceBundle;
 
 import static fi.tuni.prog3.weatherapp.util.DateTimeUtil.formatLocalDateTime;
 
+/**
+ * Controller class for the main view of the WeatherApp.
+ * This class implements the Initializable interface.
+ */
 @Component
 @FxmlView("/mainView.fxml")
 public class MainViewController implements Initializable {
@@ -41,6 +45,12 @@ public class MainViewController implements Initializable {
 
     private final WeatherRenderer weatherRenderer;
 
+    /**
+     * Constructor for MainViewController.
+     *
+     * @param iAPI            The service for accessing weather information APIs.
+     * @param weatherRenderer The renderer for weather information.
+     */
     public MainViewController(iAPI iAPI, WeatherRenderer weatherRenderer) {
         this.iAPI = iAPI;
         this.weatherRenderer = weatherRenderer;
@@ -86,6 +96,12 @@ public class MainViewController implements Initializable {
     @FXML
     private TextField inpLocation;
 
+    /**
+     * Initializes the main view when it is loaded.
+     *
+     * @param url            The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         title.setVisible(true);
@@ -96,6 +112,11 @@ public class MainViewController implements Initializable {
         renderDataFromForeCastApi(foreCastInfoDto);
     }
 
+    /**
+     * Handles the "Show Favorite" button click event.
+     *
+     * @param event The action event triggered by the button click.
+     */
     @FXML
     void showFavorite(ActionEvent event) {
         title.setVisible(false);
@@ -104,6 +125,11 @@ public class MainViewController implements Initializable {
         renderFavorite();
     }
 
+    /**
+     * Handles the "Show History" button click event.
+     *
+     * @param event The action event triggered by the button click.
+     */
     @FXML
     void showHistory(ActionEvent event) {
         title.setVisible(false);
@@ -112,10 +138,14 @@ public class MainViewController implements Initializable {
         renderHistory();
     }
 
+    /**
+     * Handles the "Add Favorite" button click event.
+     *
+     * @param mouseEvent The mouse event triggered by the button click.
+     */
     @FXML
     public void addFavorite(MouseEvent mouseEvent) {
         var id = Long.parseLong(current_id.getText());
-        var location = inpLocation.getText();
         WeatherInfoDto weatherInfoDto = iAPI.findById(id);
         if (weatherInfoDto.getFavorite()) {
             iAPI.updateFavoriteStatus(id, false);
@@ -126,12 +156,22 @@ public class MainViewController implements Initializable {
         }
     }
 
+    /**
+     * Sets the image for the "Add to Favorite" button based on the favorite status.
+     *
+     * @param isFavorite True if the location is a favorite, false otherwise.
+     */
     private void setFavoriteImage(boolean isFavorite) {
         String imageUrl = isFavorite ? IMAGE_URL_ADDED_FAVOURITE : IMAGE_URL_ADD_TO_FAVOURITE;
         Image newImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(imageUrl)));
         btn_add_favorite.setImage(newImage);
     }
 
+    /**
+     * Handles the "Load New Location Data" button click event.
+     *
+     * @param event The action event triggered by the button click.
+     */
     @FXML
     void loadNewLocationData(ActionEvent event) {
         var location = inpLocation.getText();
@@ -152,6 +192,11 @@ public class MainViewController implements Initializable {
         }
     }
 
+    /**
+     * Handles the "Show Current" button click event.
+     *
+     * @param actionEvent The action event triggered by the button click.
+     */
     @FXML
     public void showCurrent(ActionEvent actionEvent) {
         title.setVisible(true);
@@ -162,61 +207,121 @@ public class MainViewController implements Initializable {
         renderDataFromWeatherApi(weatherInfoDto);
     }
 
+    /**
+     * Handles the mouse click event on the favorite item at position 1.
+     *
+     * @param event The mouse event triggered by the click.
+     */
     @FXML
     void get_favou1(MouseEvent event) {
         handleFavoriteClick(current_favorite_id1);
     }
 
+    /**
+     * Handles the mouse click event on the favorite item at position 2.
+     *
+     * @param event The mouse event triggered by the click.
+     */
     @FXML
     void get_favou2(MouseEvent event) {
         handleFavoriteClick(current_favorite_id2);
     }
 
+    /**
+     * Handles the mouse click event on the favorite item at position 3.
+     *
+     * @param event The mouse event triggered by the click.
+     */
     @FXML
     void get_favou3(MouseEvent event) {
         handleFavoriteClick(current_favorite_id3);
     }
 
+    /**
+     * Handles the mouse click event on the favorite item at position 4.
+     *
+     * @param event The mouse event triggered by the click.
+     */
     @FXML
     void get_favou4(MouseEvent event) {
         handleFavoriteClick(current_favorite_id4);
     }
 
+    /**
+     * Handles the mouse click event on the favorite item at position 5.
+     *
+     * @param event The mouse event triggered by the click.
+     */
     @FXML
     void get_favou5(MouseEvent event) {
         handleFavoriteClick(current_favorite_id5);
     }
 
+    /**
+     * Handles the mouse click event on the favorite item at position 6.
+     *
+     * @param event The mouse event triggered by the click.
+     */
     @FXML
     void get_favou6(MouseEvent event) {
         handleFavoriteClick(current_favorite_id6);
     }
 
+    /**
+     * Handles the mouse click event on the history item at position 1.
+     *
+     * @param event The mouse event triggered by the click.
+     */
     @FXML
     void get_his1(MouseEvent event) {
         handleHistoryClick(current_history_id1);
     }
 
+    /**
+     * Handles the mouse click event on the history item at position 2.
+     *
+     * @param event The mouse event triggered by the click.
+     */
     @FXML
     void get_his2(MouseEvent event) {
         handleHistoryClick(current_history_id2);
     }
 
+    /**
+     * Handles the mouse click event on the history item at position 3.
+     *
+     * @param event The mouse event triggered by the click.
+     */
     @FXML
     void get_his3(MouseEvent event) {
         handleHistoryClick(current_history_id3);
     }
 
+    /**
+     * Handles the mouse click event on the history item at position 4.
+     *
+     * @param event The mouse event triggered by the click.
+     */
     @FXML
     void get_his4(MouseEvent event) {
         handleHistoryClick(current_history_id4);
     }
 
+    /**
+     * Handles the mouse click event on the history item at position 5.
+     *
+     * @param event The mouse event triggered by the click.
+     */
     @FXML
     void get_his5(MouseEvent event) {
         handleHistoryClick(current_history_id5);
     }
 
+    /**
+     * Handles the mouse click event on the history item at position 6.
+     *
+     * @param event The mouse event triggered by the click.
+     */
     @FXML
     void get_his6(MouseEvent event) {
         handleHistoryClick(current_history_id6);
@@ -224,7 +329,9 @@ public class MainViewController implements Initializable {
 
 
     /**
-     * This method is helping for render weatherAPI from open API.
+     * Renders weather information from the open API for the current weather data.
+     *
+     * @param weatherInfoDto The WeatherInfoDto containing the current weather data.
      */
     private void renderDataFromWeatherApi(WeatherInfoDto weatherInfoDto) {
         current_location.setText(weatherInfoDto.getName());
@@ -247,7 +354,9 @@ public class MainViewController implements Initializable {
         moonP.setText(DateTimeUtil.convertToTimeString(weatherInfoDto.getSys().getSunset()));
     }
 
-
+    /**
+     * Renders historical weather information.
+     */
     private void renderHistory() {
         var weatherInfoDtoList = iAPI.getListHistory();
         Text[] weatherHistoryCities = {city_history1, city_history2, city_history3, city_history4, city_history5, city_history6};
@@ -274,7 +383,10 @@ public class MainViewController implements Initializable {
     }
 
     /**
-     * This method is helping for render current data
+     * Renders weather information for a specific forecast item.
+     *
+     * @param foreCastDto The ForeCastDto containing forecast data for a specific time.
+     * @param index       The index indicating the position of the forecast item.
      */
     private void renderDataItem(ForeCastDto foreCastDto, int index) {
         Text[] dateForecasts = {dateForecast1, dateForecast2, dateForecast3, dateForecast4, dateForecast5};
@@ -297,6 +409,11 @@ public class MainViewController implements Initializable {
         }
     }
 
+    /**
+     * Renders weather information from the open API for the forecast data.
+     *
+     * @param foreCastInfoDtos The ForeCastInfoDto containing forecast data.
+     */
     private void renderDataFromForeCastApi(ForeCastInfoDto foreCastInfoDtos) {
         for (int i = 0; i < 5; i++) {
             renderDataItem(foreCastInfoDtos.getList().get(7 + i * 8), i + 1);
@@ -304,7 +421,9 @@ public class MainViewController implements Initializable {
     }
 
     /**
-     * This method is helping for handling click favorite
+     * Handles a click on a favorite item by updating the displayed weather information.
+     *
+     * @param currentFavoriteId The label containing the ID of the clicked favorite item.
      */
     private void handleFavoriteClick(Label currentFavoriteId) {
         var id = Long.parseLong(currentFavoriteId.getText());
@@ -318,7 +437,9 @@ public class MainViewController implements Initializable {
 
 
     /**
-     * This method is helping for handling click history
+     * Handles a click on a history item by updating the displayed weather information.
+     *
+     * @param currentHistoryId The label containing the ID of the clicked history item.
      */
     private void handleHistoryClick(Label currentFavoriteId) {
         var id = Long.parseLong(current_history_id1.getText());
