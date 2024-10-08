@@ -1,0 +1,4 @@
+#menuLayout{
+    fx-border-color: transparent transparent transparent black; /* Chỉ viền bên phải */
+    -fx-border-width: 0 2px 0 0; /* Độ dày viền: trên, phải, dưới, trái */
+}

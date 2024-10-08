@@ -2,6 +2,7 @@ package fi.tuni.prog3.weatherapp.config;
 
 import fi.tuni.prog3.weatherapp.WeatherSystemApplication;
 import fi.tuni.prog3.weatherapp.controller.MainViewController;
+import fi.tuni.prog3.weatherapp.controller.MainViewV2Controller;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Parent;
@@ -50,7 +51,7 @@ public class WeatherApp extends Application {
     public void start(Stage stage) {
         try {
             FxWeaver fxWeaver = applicationContext.getBean(FxWeaver.class);
-            Parent root = fxWeaver.loadView(MainViewController.class);
+            Parent root = fxWeaver.loadView(MainViewV2Controller.class);
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();

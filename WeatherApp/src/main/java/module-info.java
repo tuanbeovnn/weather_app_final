@@ -20,6 +20,7 @@ module fi.tuni.progthree.weatherapp {
     requires java.persistence;
     requires io.hypersistence.utils.hibernate.type;
     requires reactor.core;
+    requires java.annotation;
     exports fi.tuni.prog3.weatherapp;
     exports fi.tuni.prog3.weatherapp.controller;
     exports fi.tuni.prog3.weatherapp.config;
