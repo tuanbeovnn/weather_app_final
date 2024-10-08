@@ -42,9 +42,4 @@ public class MenuController {
     }
 
 
-//    private void loadContent(String content) {
-//        // Thay đổi nội dung của AnchorPane
-//        Label label = new Label("Content: " + content);
-//        anchorPaneId.getChildren().setAll(label);
-//    }
 }

@@ -24,17 +24,17 @@ module fi.tuni.progthree.weatherapp {
     exports fi.tuni.prog3.weatherapp;
     exports fi.tuni.prog3.weatherapp.controller;
     exports fi.tuni.prog3.weatherapp.config;
-    exports fi.tuni.prog3.weatherapp.util;
-    exports fi.tuni.prog3.weatherapp.weatherapi;
-    exports fi.tuni.prog3.weatherapp.service;
+//    exports fi.tuni.prog3.weatherapp.util;
+//    exports fi.tuni.prog3.weatherapp.weatherapi;
+//    exports fi.tuni.prog3.weatherapp.service;
     opens fi.tuni.prog3.weatherapp.controller;
     opens fi.tuni.prog3.weatherapp;
-    opens fi.tuni.prog3.weatherapp.service;
-    opens fi.tuni.prog3.weatherapp.entity;
+//    opens fi.tuni.prog3.weatherapp.service;
+//    opens fi.tuni.prog3.weatherapp.entity;
     opens fi.tuni.prog3.weatherapp.config;
-    exports fi.tuni.prog3.weatherapp.service.impl;
-    opens fi.tuni.prog3.weatherapp.service.impl;
-    exports fi.tuni.prog3.weatherapp.dto;
-    exports fi.tuni.prog3.weatherapp.repository;
-    opens fi.tuni.prog3.weatherapp.dto;
+//    exports fi.tuni.prog3.weatherapp.service.impl;
+//    opens fi.tuni.prog3.weatherapp.service.impl;
+//    exports fi.tuni.prog3.weatherapp.dto;
+//    exports fi.tuni.prog3.weatherapp.repository;
+//    opens fi.tuni.prog3.weatherapp.dto;
 }

@@ -112,7 +112,7 @@
                   </ComboBox>
                </children>
             </HBox>
-            <Button fx:id="btnSave" alignment="CENTER" mnemonicParsing="false" onAction="#save" prefHeight="40.0" prefWidth="150.0" style="-fx-border-radius: 20; -fx-background-color: #6a6a6a;" styleClass="btnMenu" stylesheets="@../css/menu.css" text="Save" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="btnSave" alignment="CENTER" mnemonicParsing="false" onAction="#save" prefHeight="40.0" prefWidth="150.0" style="-fx-border-radius: 20; -fx-background-color: #6a6a6a;" styleClass="btnMenu" stylesheets="@css/menu.css" text="Save" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="16.0" />
                </font>

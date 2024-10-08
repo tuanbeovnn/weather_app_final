@@ -8,7 +8,6 @@ import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.stereotype.Component;
 
 @Component
-//@FxmlView("/HomeLayout.fxml")
 public class HomeController {
     @FXML
     private Button btnSearch;
