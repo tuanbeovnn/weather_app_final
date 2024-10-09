@@ -1,45 +1,63 @@
 package fi.tuni.prog3.weatherapp.controller;
 
+import fi.tuni.prog3.weatherapp.model.MainUIModel;
+import fi.tuni.prog3.weatherapp.model.MenuUIModel;
+import fi.tuni.prog3.weatherapp.service.LayoutService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 @Component
 @Slf4j
-public class MenuController {
+public class MenuController implements Initializable {
     @FXML
-    private Button Forecast;
+    private Button btnForecast, btnData, btnHome, btnSetting;
 
     @FXML
-    private Button btnData;
+    private Label inputSearch;
+
+    @Autowired
+    private LayoutService layoutService;
+
+    @Getter
+    private MenuUIModel menuUIModel;
+
+    @Getter
+    private MainUIModel mainUIModel;
 
     @FXML
-    private Button btnHome;
-
-    @FXML
-    private Button btnSetting;
-
-    @FXML
-    void goData(ActionEvent event) {
+    void loadHomeLayout(ActionEvent event) {
         log.info("Go Data");
     }
 
     @FXML
-    void goForecast(ActionEvent event) {
+    void loadDataLayout(ActionEvent event) {
         log.info("Go Forecast");
     }
 
     @FXML
-    void goHome(ActionEvent event) {
+    void loadForecastLayout(ActionEvent event) {
         log.info("Go Home");
     }
 
     @FXML
-    void goSetting(ActionEvent event) {
+    void loadSettingLayout(ActionEvent event) {
         log.info("Go Setting");
     }
 
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
 
 }

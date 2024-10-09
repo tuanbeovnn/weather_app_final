@@ -1,5 +1,5 @@
 #root {
-    -fx-background-image: url('../images/giphy.gif');
+    /*-fx-background-image: url('../images/giphy.gif');*/
     -fx-background-size: cover;
 }
 

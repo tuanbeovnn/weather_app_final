@@ -23,6 +23,7 @@ module fi.tuni.progthree.weatherapp {
     requires java.annotation;
     exports fi.tuni.prog3.weatherapp;
     exports fi.tuni.prog3.weatherapp.controller;
+    exports fi.tuni.prog3.weatherapp.service;
     exports fi.tuni.prog3.weatherapp.config;
 //    exports fi.tuni.prog3.weatherapp.util;
 //    exports fi.tuni.prog3.weatherapp.weatherapi;
@@ -32,6 +33,7 @@ module fi.tuni.progthree.weatherapp {
 //    opens fi.tuni.prog3.weatherapp.service;
 //    opens fi.tuni.prog3.weatherapp.entity;
     opens fi.tuni.prog3.weatherapp.config;
+    opens fi.tuni.prog3.weatherapp.service;
 //    exports fi.tuni.prog3.weatherapp.service.impl;
 //    opens fi.tuni.prog3.weatherapp.service.impl;
 //    exports fi.tuni.prog3.weatherapp.dto;

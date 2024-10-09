@@ -1,4 +1,13 @@
 #menuLayout{
-    fx-border-color: transparent transparent transparent black; /* Chỉ viền bên phải */
-    -fx-border-width: 0 2px 0 0; /* Độ dày viền: trên, phải, dưới, trái */
+    fx-border-color: transparent transparent transparent black;
+    -fx-border-width: 0 2px 0 0;
+}
+
+.btnMenu{
+    -fx-background-color: #6a6a6a;
+    -fx-text-fill: white;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-color: transparent;
+    -fx-cursor: hand;
 }
