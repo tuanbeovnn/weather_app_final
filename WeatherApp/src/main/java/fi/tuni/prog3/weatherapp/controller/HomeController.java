@@ -1,10 +1,11 @@
 package fi.tuni.prog3.weatherapp.controller;
 
-import fi.tuni.prog3.weatherapp.model.HomeUIModel;
-import fi.tuni.prog3.weatherapp.service.HomeService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +13,7 @@ import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -26,28 +28,32 @@ public class HomeController implements Initializable {
     private TextField inputSearch;
 
     @Autowired
-    private HomeService homeService;
-
-    @Autowired
     private MainViewController mainViewController;
 
-    private HomeUIModel homeUIModel;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        homeUIModel = HomeUIModel.builder()
-                .btnSearch(btnSearch)
-                .inputSearch(inputSearch)
-                .build();
+
     }
 
     @FXML
     void search(ActionEvent event){
-        homeService.search(
-                mainViewController.getMainUIModel().getContent(),
-                inputSearch.getText(),
-                mainViewController.getMenuUIModel().getBtnForecast()
-        );
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ForecastLayout.fxml"));
+            Parent view = loader.load();
+
+            ForecastController controller = loader.getController();
+
+            controller.setSearchText(inputSearch.getText());
+
+            mainViewController.getContentId().getChildren().setAll(view);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Failed to load FXML: /ForecastLayout.fxml");
+        }
+//        selectButton(selectedButton, menuUIModel);
     }
+
+
 
 }

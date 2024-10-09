@@ -8,10 +8,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class HomeService {
-    @Autowired LayoutService layoutService;
+    @Autowired
+    LayoutUtil layoutUtil;
 
     public void search(AnchorPane contentId, String text, Button button) {
 //        handle input search
-        layoutService.loadLayout(contentId, Constants.FORECAST_LAYOUT, button, layoutService.getMenuUIModel());
+        layoutUtil.loadLayout(contentId, Constants.FORECAST_LAYOUT, button, layoutUtil.getMenuUIModel());
     }
 }

@@ -3,16 +3,18 @@ package fi.tuni.prog3.weatherapp.controller;
 import fi.tuni.prog3.weatherapp.common.Constants;
 import fi.tuni.prog3.weatherapp.model.MainUIModel;
 import fi.tuni.prog3.weatherapp.model.MenuUIModel;
-import fi.tuni.prog3.weatherapp.service.HomeService;
-import fi.tuni.prog3.weatherapp.service.LayoutService;
+import fi.tuni.prog3.weatherapp.service.LayoutUtil;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.rgielen.fxweaver.core.FxmlView;
@@ -27,7 +29,9 @@ import java.util.ResourceBundle;
 @FxmlView("/mainView.fxml")
 @Slf4j
 public class MainViewController implements Initializable {
+
     @FXML
+    @Getter
     private AnchorPane contentId;
 
     @FXML
@@ -37,7 +41,7 @@ public class MainViewController implements Initializable {
     private Label inputSearch;
 
     @Autowired
-    private LayoutService layoutService;
+    private LayoutUtil layoutUtil;
 
     @Getter
     private MenuUIModel menuUIModel;
@@ -61,34 +65,36 @@ public class MainViewController implements Initializable {
                 .content(contentId)
                 .build();
 
-        layoutService.resetButtonStyles(menuUIModel);
+        layoutUtil.resetButtonStyles(menuUIModel);
+
     }
 
     private void initMainView() {
         if (!isHomeLayoutLoaded) {
-            layoutService.loadLayout(contentId, Constants.HOME_LAYOUT, btnHome, menuUIModel);
+            layoutUtil.loadLayout(contentId, Constants.HOME_LAYOUT, btnHome, menuUIModel);
             isHomeLayoutLoaded = true;
         }
     }
 
     @FXML
     void loadHomeLayout(ActionEvent event) {
-        layoutService.loadLayout(contentId, Constants.HOME_LAYOUT, btnHome,menuUIModel);
+        layoutUtil.loadLayout(contentId, Constants.HOME_LAYOUT, btnHome,menuUIModel);
     }
 
     @FXML
     void loadDataLayout(ActionEvent event) {
-        layoutService.loadLayout(contentId, Constants.DATA_LAYOUT, btnData, menuUIModel);
+//        layoutUtil.loadLayout(contentId, Constants.DATA_LAYOUT, btnData, menuUIModel);
     }
 
     @FXML
     void loadForecastLayout(ActionEvent event) {
-        layoutService.loadLayout(contentId, Constants.FORECAST_LAYOUT, btnForecast, menuUIModel);
+//        layoutUtil.loadLayout(contentId, Constants.FORECAST_LAYOUT, btnForecast, menuUIModel);
     }
 
     @FXML
-    void loadSettingLayout(ActionEvent event) throws IOException {
-        layoutService.loadLayout(contentId, Constants.SETTING_LAYOUT, btnSetting, menuUIModel);
+    void loadSettingLayout(ActionEvent event){
+//        layoutUtil.loadLayout(contentId, Constants.SETTING_LAYOUT, btnSetting, menuUIModel);
 
     }
+
 }

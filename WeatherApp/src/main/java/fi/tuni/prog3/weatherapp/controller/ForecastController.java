@@ -5,6 +5,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.stereotype.Component;
@@ -33,6 +36,16 @@ public class ForecastController implements Initializable {
 
     @FXML
     private Label statForecast1, statForecast2, statForecast3, statForecast4, statForecast5;
+
+    @FXML
+    private Label txt_city;
+
+    @Setter
+    private Stage forecastStage;
+
+    public void setSearchText(String searchText) {
+        txt_city.setText(searchText);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
