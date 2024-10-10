@@ -1,12 +1,21 @@
 package fi.tuni.prog3.weatherapp.controller;
 
-import lombok.extern.slf4j.Slf4j;
+import javafx.fxml.Initializable;
+import javafx.scene.layout.AnchorPane;
+import lombok.Setter;
 import net.rgielen.fxweaver.core.FxmlView;
-import org.springframework.stereotype.Component;
 
-@Slf4j
-@Component
+import java.net.URL;
+import java.util.ResourceBundle;
+
 @FxmlView ("/DataLayout.fxml")
-public class DataController {
+public class DataController implements Initializable, BaseController {
+    @Setter
+    AnchorPane content;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
 
 }
