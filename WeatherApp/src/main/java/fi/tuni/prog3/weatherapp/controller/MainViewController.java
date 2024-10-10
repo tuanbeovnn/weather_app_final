@@ -1,6 +1,9 @@
 package fi.tuni.prog3.weatherapp.controller;
 
 import fi.tuni.prog3.weatherapp.util.Constants;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +13,9 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.rgielen.fxweaver.core.FxmlView;
@@ -34,6 +40,14 @@ public class MainViewController implements Initializable {
     @Getter
     private Button btnForecast, btnData, btnHome, btnSetting;
 
+    @FXML
+    private VBox menuLayout;
+
+    @FXML
+    private GridPane menuGrid;
+
+    private boolean isMenuVisible = true;
+
     private boolean isHomeLayoutLoaded = false;
 
     public MainViewController() {
@@ -52,6 +66,38 @@ public class MainViewController implements Initializable {
             isHomeLayoutLoaded = true;
         }
     }
+
+    @FXML
+    private void toggleMenu() {
+        Timeline timeline = new Timeline();
+        if (isMenuVisible) {
+            KeyValue kv1 = new KeyValue(menuLayout.prefWidthProperty(), 40);
+            KeyValue kv2 = new KeyValue(menuGrid.opacityProperty(), 0);
+            KeyFrame kf = new KeyFrame(Duration.millis(300), kv1, kv2);
+            timeline.getKeyFrames().add(kf);
+            timeline.setOnFinished(e -> {
+                menuGrid.setVisible(false);
+                btnHome.setText("🏠fsd");
+                btnData.setText("📊");
+                btnForecast.setText("🌤");
+                btnSetting.setText("⚙");
+                menuGrid.setOpacity(1);
+            });
+        } else {
+            menuGrid.setVisible(true);
+            btnHome.setText("🏠 Home");
+            btnData.setText("📊 Data");
+            btnForecast.setText("🌤 Forecast");
+            btnSetting.setText("⚙ Setting");
+            KeyValue kv1 = new KeyValue(menuLayout.prefWidthProperty(), 200);
+            KeyValue kv2 = new KeyValue(menuGrid.opacityProperty(), 1);
+            KeyFrame kf = new KeyFrame(Duration.millis(300), kv1, kv2);
+            timeline.getKeyFrames().add(kf);
+        }
+        timeline.play();
+        isMenuVisible = !isMenuVisible;
+    }
+
 
     @FXML
     void loadHomeLayout(ActionEvent event) {

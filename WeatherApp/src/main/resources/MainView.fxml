@@ -11,9 +11,10 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fi.tuni.prog3.weatherapp.controller.MainViewController">
-   <VBox id="menuLayout" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="200.0" style="-fx-border-color: black;" stylesheets="@css/menu.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="600.0" AnchorPane.topAnchor="0.0">
+   <VBox id="menuLayout" fx:id="menuLayout" layoutY="5.0" prefHeight="600.0" prefWidth="200.0" style="-fx-background-color: #d6d6d6;" stylesheets="@css/menu.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
-         <GridPane prefHeight="600.0" prefWidth="200.0">
+         <Button fx:id="toggleButton" onAction="#toggleMenu" prefHeight="40.0" prefWidth="40.0" text="☰" />
+         <GridPane fx:id="menuGrid" prefHeight="560.0" prefWidth="200.0">
             <columnConstraints>
                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             </columnConstraints>
@@ -28,7 +29,7 @@
                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-               <Button fx:id="btnHome" mnemonicParsing="false" onAction="#loadHomeLayout" prefHeight="40.0" prefWidth="150.0" style="-fx-border-radius: 20; -fx-background-color: #6a6a6a;" styleClass="btnMenu" stylesheets="@css/menu.css" text="Home" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="2">
+               <Button fx:id="btnHome" mnemonicParsing="false" onAction="#loadHomeLayout" prefHeight="40.0" prefWidth="150.0" styleClass="btnMenu" stylesheets="@css/menu.css" text="🏠 Home" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="2">
                   <font>
                      <Font name="Arial Bold" size="16.0" />
                   </font>
@@ -40,17 +41,17 @@
                      </DropShadow>
                   </effect>
                </Button>
-               <Button fx:id="btnData" mnemonicParsing="false" onAction="#loadDataLayout" prefHeight="40.0" prefWidth="150.0" style="-fx-border-radius: 20; -fx-background-color: #6a6a6a;" styleClass="btnMenu" stylesheets="@css/menu.css" text="Data" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="3">
+               <Button fx:id="btnData" mnemonicParsing="false" onAction="#loadDataLayout" prefHeight="40.0" prefWidth="150.0" styleClass="btnMenu" stylesheets="@css/menu.css" text="📊 Data" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="3">
                   <font>
                      <Font name="Arial Bold" size="16.0" />
                   </font>
                </Button>
-               <Button fx:id="btnForecast" mnemonicParsing="false" onAction="#loadForecastLayout" prefHeight="40.0" prefWidth="150.0" style="-fx-border-radius: 20; -fx-background-color: #6a6a6a;" styleClass="btnMenu" stylesheets="@css/menu.css" text="Forecast" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="4">
+               <Button fx:id="btnForecast" mnemonicParsing="false" onAction="#loadForecastLayout" prefHeight="40.0" prefWidth="150.0" styleClass="btnMenu" stylesheets="@css/menu.css" text="🌤 Forecast" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="4">
                   <font>
                      <Font name="Arial Bold" size="16.0" />
                   </font>
                </Button>
-               <Button fx:id="btnSetting" mnemonicParsing="false" onAction="#loadSettingLayout" prefHeight="40.0" prefWidth="150.0" style="-fx-border-radius: 20; -fx-background-color: #6a6a6a;" styleClass="btnMenu" stylesheets="@css/menu.css" text="Setting" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="5">
+               <Button fx:id="btnSetting" mnemonicParsing="false" onAction="#loadSettingLayout" prefHeight="40.0" prefWidth="150.0" styleClass="btnMenu" stylesheets="@css/menu.css" text="⚙ Setting" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="5">
                   <font>
                      <Font name="Arial Bold" size="16.0" />
                   </font>
@@ -59,5 +60,5 @@
          </GridPane>
       </children>
    </VBox>
-    <AnchorPane fx:id="contentId" layoutX="199.2" minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="199.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+   <AnchorPane fx:id="contentId" layoutX="200" minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="199.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
 </AnchorPane>
