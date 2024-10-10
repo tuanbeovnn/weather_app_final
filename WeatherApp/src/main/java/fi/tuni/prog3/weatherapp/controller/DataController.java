@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-@FxmlView ("/DataLayout.fxml")
+@FxmlView ("/views/DataLayout.fxml")
 @Component
 public class DataController implements Initializable {
     @FXML

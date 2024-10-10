@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 
 @Slf4j
 @Component
-@FxmlView("/HomeLayout.fxml")
+@FxmlView("/views/HomeLayout.fxml")
 public class HomeController implements Initializable {
     @FXML
     private Button btnSearch;

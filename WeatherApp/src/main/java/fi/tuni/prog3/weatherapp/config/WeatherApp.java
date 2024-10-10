@@ -37,7 +37,7 @@ public class WeatherApp extends Application {
             stage.setScene(scene);
             stage.setTitle("Weather App");
 
-            Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icon-weather-detail/logo.png")));
+            Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/icon/logo.png")));
             stage.getIcons().add(icon);
 
             stage.show();

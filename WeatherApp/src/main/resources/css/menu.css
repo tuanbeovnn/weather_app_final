@@ -10,4 +10,5 @@
     -fx-border-radius: 20;
     -fx-border-color: transparent;
     -fx-cursor: hand;
+    -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.22), 0, 0, -9, 9);
 }

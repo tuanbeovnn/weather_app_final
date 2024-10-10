@@ -13,7 +13,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 @Slf4j
-@FxmlView("/ForecastLayout.fxml")
+@FxmlView("/views/ForecastLayout.fxml")
 @Component
 public class ForecastController implements Initializable {
     @FXML

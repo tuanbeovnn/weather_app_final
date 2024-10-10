@@ -90,11 +90,11 @@ public class MainViewController implements Initializable {
         selectedButton.setStyle("-fx-background-color: #2b2b2b; -fx-text-fill: white;");
 
 //         Box Shadow
-        DropShadow dropShadow = new DropShadow();
-        dropShadow.setOffsetX(-4); // Bóng đổ sang trái
-        dropShadow.setOffsetY(4);   // Bóng đổ xuống dưới
-        dropShadow.setColor(javafx.scene.paint.Color.GRAY);
-        selectedButton.setEffect(dropShadow);
+//        DropShadow dropShadow = new DropShadow();
+//        dropShadow.setOffsetX(-4); // Bóng đổ sang trái
+//        dropShadow.setOffsetY(4);   // Bóng đổ xuống dưới
+//        dropShadow.setColor(javafx.scene.paint.Color.GRAY);
+//        selectedButton.setEffect(dropShadow);
     }
 
     public void resetButtonStyles() {
@@ -103,11 +103,12 @@ public class MainViewController implements Initializable {
         btnData.setStyle("-fx-background-color: #6a6a6a; -fx-text-fill: white;");
         btnForecast.setStyle("-fx-background-color: #6a6a6a; -fx-text-fill: white;");
         btnSetting.setStyle("-fx-background-color: #6a6a6a; -fx-text-fill: white;");
+
 //        Remove shadow effect
-        btnHome.setEffect(null);
-        btnData.setEffect(null);
-        btnForecast.setEffect(null);
-        btnSetting.setEffect(null);
+//        btnHome.setEffect(null);
+//        btnData.setEffect(null);
+//        btnForecast.setEffect(null);
+//        btnSetting.setEffect(null);
     }
 
 }

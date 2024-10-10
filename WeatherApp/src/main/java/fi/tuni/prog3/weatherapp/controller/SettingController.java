@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 
 @Slf4j
 @Component
-@FxmlView ("/SettingLayout.fxml")
+@FxmlView ("/views/SettingLayout.fxml")
 public class SettingController implements Initializable {
     @FXML
     private ComboBox<String> activitiesComboBox;
