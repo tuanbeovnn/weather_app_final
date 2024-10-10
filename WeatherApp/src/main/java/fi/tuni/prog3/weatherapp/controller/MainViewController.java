@@ -20,7 +20,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 @Component
-@FxmlView("/mainView.fxml")
+@FxmlView("/MainView.fxml")
 @Slf4j
 public class MainViewController implements Initializable {
     @Getter

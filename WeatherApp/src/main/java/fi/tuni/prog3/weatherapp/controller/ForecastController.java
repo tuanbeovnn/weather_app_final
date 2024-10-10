@@ -48,7 +48,7 @@ public class ForecastController implements Initializable {
 
     @FXML
     void addFavorite(MouseEvent event) {
-
+        log.info("add/remove to favorite");
     }
 
 }
