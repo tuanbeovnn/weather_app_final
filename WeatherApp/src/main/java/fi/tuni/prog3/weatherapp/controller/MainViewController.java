@@ -23,8 +23,11 @@ import java.util.ResourceBundle;
 @FxmlView("/mainView.fxml")
 @Slf4j
 public class MainViewController implements Initializable {
+    @Getter
+    private static MainViewController instance;
 
     @FXML
+    @Getter
     private AnchorPane contentId;
 
     @FXML
@@ -32,6 +35,10 @@ public class MainViewController implements Initializable {
     private Button btnForecast, btnData, btnHome, btnSetting;
 
     private boolean isHomeLayoutLoaded = false;
+
+    public MainViewController() {
+        instance = this;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -70,12 +77,6 @@ public class MainViewController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(viewPath));
             Parent view = loader.load();
-
-            if (loader.getController() instanceof BaseController) {
-                BaseController contentController = loader.getController();
-                contentController.setContent(contentId);
-            }
-
             contentId.getChildren().clear();
             contentId.getChildren().setAll(view);
         } catch (IOException e) {

@@ -9,8 +9,6 @@ import javafx.scene.Parent;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.stereotype.Component;
@@ -22,15 +20,12 @@ import java.util.ResourceBundle;
 @Slf4j
 @Component
 @FxmlView("/HomeLayout.fxml")
-public class HomeController implements Initializable, BaseController {
+public class HomeController implements Initializable {
     @FXML
     private Button btnSearch;
 
     @FXML
     private TextField inputSearch;
-
-    @Setter
-    private AnchorPane content;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -46,7 +41,10 @@ public class HomeController implements Initializable, BaseController {
             ForecastController controller = loader.getController();
             controller.setSearchText(inputSearch.getText());
 
-            content.getChildren().setAll(view);
+            MainViewController mainViewController = MainViewController.getInstance();
+            mainViewController.selectButton(mainViewController.getBtnForecast());
+            mainViewController.getContentId().getChildren().clear();
+            mainViewController.getContentId().getChildren().add(view);
         } catch (IOException e) {
             log.error("Failed to load view: {}", Constants.FORECAST_LAYOUT);
         }

@@ -1,27 +1,21 @@
 package fi.tuni.prog3.weatherapp.controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 @Slf4j
 @FxmlView("/ForecastLayout.fxml")
-public class ForecastController implements Initializable, BaseController {
+@Component
+public class ForecastController implements Initializable {
     @FXML
     private ImageView btn_add_favorite, headerIcon;
 
@@ -42,9 +36,6 @@ public class ForecastController implements Initializable, BaseController {
 
     @FXML
     private Label txt_city;
-
-    @Setter
-    AnchorPane content;
 
     public void setSearchText(String searchText) {
         txt_city.setText(searchText);
