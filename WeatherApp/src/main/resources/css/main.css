@@ -31,11 +31,14 @@
 }
 
 .btn {
-    -fx-background-color: rgba(255, 255, 255, 1);
-    -fx-background-radius: 5px;
+    -fx-background-color: #6a6a6a;
+    -fx-text-fill: white;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-color: transparent;
     -fx-cursor: hand;
 }
 
-.btn:hover {
-    -fx-background-color:rgba(0, 255, 255, 1);
+.combo-box {
+    -fx-font-size: 18px;
 }

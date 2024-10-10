@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.stereotype.Component;
@@ -27,6 +28,7 @@ public class MainViewController implements Initializable {
     private AnchorPane contentId;
 
     @FXML
+    @Getter
     private Button btnForecast, btnData, btnHome, btnSetting;
 
     private boolean isHomeLayoutLoaded = false;
@@ -82,7 +84,7 @@ public class MainViewController implements Initializable {
         this.selectButton(selectedButton);
     }
 
-    private void selectButton(Button selectedButton) {
+    public void selectButton(Button selectedButton) {
         resetButtonStyles();
         selectedButton.setStyle("-fx-background-color: #2b2b2b; -fx-text-fill: white;");
 
@@ -94,7 +96,7 @@ public class MainViewController implements Initializable {
         selectedButton.setEffect(dropShadow);
     }
 
-    private void resetButtonStyles() {
+    public void resetButtonStyles() {
 //        Set default color
         btnHome.setStyle("-fx-background-color: #6a6a6a; -fx-text-fill: white;");
         btnData.setStyle("-fx-background-color: #6a6a6a; -fx-text-fill: white;");

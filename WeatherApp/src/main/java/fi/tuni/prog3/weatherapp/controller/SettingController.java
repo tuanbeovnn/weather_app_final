@@ -96,6 +96,9 @@ public class SettingController implements Initializable, BaseController {
 //            ForecastController controller = loader.getController();
 //            controller.setSearchText(inputSearch.getText());
 
+            HomeController controller = loader.getController();
+            controller.setContent(content);
+
             content.getChildren().setAll(view);
         } catch (IOException e) {
             log.error("Failed to load view: {}", Constants.HOME_LAYOUT);

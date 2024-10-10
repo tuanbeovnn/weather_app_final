@@ -20,6 +20,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 @Slf4j
+@Component
 @FxmlView("/HomeLayout.fxml")
 public class HomeController implements Initializable, BaseController {
     @FXML
