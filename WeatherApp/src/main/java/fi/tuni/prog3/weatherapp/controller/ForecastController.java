@@ -51,7 +51,6 @@ public class ForecastController implements Initializable {
 
     public void setSearchText(String searchText) {
 //        Set value search to MainViewController
-        MainViewController mainViewController = MainViewController.getInstance();
         mainViewController.setSearch(searchText);
         txt_city.setText(searchText);
     }
