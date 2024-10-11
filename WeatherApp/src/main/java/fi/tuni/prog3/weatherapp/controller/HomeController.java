@@ -27,9 +27,16 @@ public class HomeController implements Initializable {
     @FXML
     private TextField inputSearch;
 
+    private final MainViewController mainViewController = MainViewController.getInstance();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        if (mainViewController.getSearch() != null) {
+            log.info("search found");
+            inputSearch.setText(mainViewController.getSearch());
+        } else {
+            log.info("search not found");
+        }
     }
 
     @FXML
@@ -41,7 +48,6 @@ public class HomeController implements Initializable {
             ForecastController controller = loader.getController();
             controller.setSearchText(inputSearch.getText());
 
-            MainViewController mainViewController = MainViewController.getInstance();
             mainViewController.selectButton(mainViewController.getBtnForecast());
             mainViewController.getContentId().getChildren().clear();
             mainViewController.getContentId().getChildren().add(view);

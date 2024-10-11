@@ -8,9 +8,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.stereotype.Component;
@@ -33,6 +33,10 @@ public class MainViewController implements Initializable {
     @FXML
     @Getter
     private Button btnForecast, btnData, btnHome, btnSetting;
+
+    @Setter
+    @Getter
+    private String search;
 
     private boolean isHomeLayoutLoaded = false;
 
@@ -88,13 +92,6 @@ public class MainViewController implements Initializable {
     public void selectButton(Button selectedButton) {
         resetButtonStyles();
         selectedButton.setStyle("-fx-background-color: #2b2b2b; -fx-text-fill: white;");
-
-//         Box Shadow
-//        DropShadow dropShadow = new DropShadow();
-//        dropShadow.setOffsetX(-4); // Bóng đổ sang trái
-//        dropShadow.setOffsetY(4);   // Bóng đổ xuống dưới
-//        dropShadow.setColor(javafx.scene.paint.Color.GRAY);
-//        selectedButton.setEffect(dropShadow);
     }
 
     public void resetButtonStyles() {
@@ -103,12 +100,6 @@ public class MainViewController implements Initializable {
         btnData.setStyle("-fx-background-color: #6a6a6a; -fx-text-fill: white;");
         btnForecast.setStyle("-fx-background-color: #6a6a6a; -fx-text-fill: white;");
         btnSetting.setStyle("-fx-background-color: #6a6a6a; -fx-text-fill: white;");
-
-//        Remove shadow effect
-//        btnHome.setEffect(null);
-//        btnData.setEffect(null);
-//        btnForecast.setEffect(null);
-//        btnSetting.setEffect(null);
     }
 
 }

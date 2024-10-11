@@ -37,13 +37,23 @@ public class ForecastController implements Initializable {
     @FXML
     private Label txt_city;
 
-    public void setSearchText(String searchText) {
-        txt_city.setText(searchText);
-    }
+    private final MainViewController mainViewController = MainViewController.getInstance();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        if (mainViewController.getSearch() != null) {
+            log.info("search found");
+            txt_city.setText(mainViewController.getSearch());
+        } else {
+            log.info("search not found");
+        }
+    }
 
+    public void setSearchText(String searchText) {
+//        Set value search to MainViewController
+        MainViewController mainViewController = MainViewController.getInstance();
+        mainViewController.setSearch(searchText);
+        txt_city.setText(searchText);
     }
 
     @FXML
