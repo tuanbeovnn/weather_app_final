@@ -35,7 +35,13 @@ public class MainViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(this::initMainView);
-        resetButtonStyles();
+
+//        Set button menu
+        DataTransferController dataTransferController = DataTransferController.getInstance();
+        dataTransferController.setBtnForecast(btnForecast);
+        dataTransferController.setBtnData(btnData);
+        dataTransferController.setBtnHome(btnHome);
+        dataTransferController.setBtnSetting(btnSetting);
     }
 
     private void initMainView() {
@@ -74,14 +80,13 @@ public class MainViewController implements Initializable {
     }
 
     private void selectButton(Button selectedButton) {
-        resetButtonStyles();
-        selectedButton.setStyle("-fx-background-color: #2b2b2b; -fx-text-fill: white;");
-    }
-
-    private void resetButtonStyles() {
+//        Reset style all menu button
         btnHome.setStyle("-fx-background-color: #6a6a6a; -fx-text-fill: white;");
         btnData.setStyle("-fx-background-color: #6a6a6a; -fx-text-fill: white;");
         btnForecast.setStyle("-fx-background-color: #6a6a6a; -fx-text-fill: white;");
         btnSetting.setStyle("-fx-background-color: #6a6a6a; -fx-text-fill: white;");
+//        Set style for selected menu button
+        selectedButton.setStyle("-fx-background-color: #2b2b2b; -fx-text-fill: white;");
     }
+
 }

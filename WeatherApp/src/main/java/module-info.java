@@ -25,11 +25,11 @@ module fi.tuni.progthree.weatherapp {
     opens fi.tuni.prog3.weatherapp to spring.core, spring.beans, spring.context;
     opens fi.tuni.prog3.weatherapp.controller to spring.core, spring.beans, javafx.fxml;
     opens fi.tuni.prog3.weatherapp.config to spring.core, spring.beans;
-    opens fi.tuni.prog3.weatherapp.service to spring.core, spring.beans;
+//    opens fi.tuni.prog3.weatherapp.service to spring.core, spring.beans;
 
     exports fi.tuni.prog3.weatherapp;
     exports fi.tuni.prog3.weatherapp.controller;
     exports fi.tuni.prog3.weatherapp.config;
-    exports fi.tuni.prog3.weatherapp.service;
-    exports fi.tuni.prog3.weatherapp.service.impl;
+//    exports fi.tuni.prog3.weatherapp.service;
+//    exports fi.tuni.prog3.weatherapp.service.impl;
 }

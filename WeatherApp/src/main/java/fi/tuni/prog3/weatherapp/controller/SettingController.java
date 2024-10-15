@@ -1,6 +1,5 @@
 package fi.tuni.prog3.weatherapp.controller;
 
-import fi.tuni.prog3.weatherapp.service.IDataService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -41,9 +40,6 @@ public class SettingController implements Initializable {
     private FxWeaver fxWeaver;
 
     @Autowired
-    private IDataService dataService;
-
-    @Autowired
     private MainViewController mainViewController;
 
     private Map<Integer, String> activitiesMap;
@@ -61,6 +57,9 @@ public class SettingController implements Initializable {
         checkBoxPrecipitation.setSelected(true);
         checkBoxTemperature.setSelected(false);
         checkBoxWindspeed.setSelected(true);
+
+        DataTransferController dataTransferController = DataTransferController.getInstance();
+        dataTransferController.selectedBtnSetting();
     }
 
     @FXML

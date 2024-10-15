@@ -1,6 +1,5 @@
 package fi.tuni.prog3.weatherapp.controller;
 
-import fi.tuni.prog3.weatherapp.service.IHomeService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -8,7 +7,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import lombok.extern.slf4j.Slf4j;
 import net.rgielen.fxweaver.core.FxmlView;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
@@ -39,17 +37,11 @@ public class ForecastController implements Initializable {
     @FXML
     private Label txt_city;
 
-    @Autowired
-    private IHomeService homeService;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if (homeService.getDataSearch() != null) {
-            log.info("data search found");
-            txt_city.setText(homeService.getDataSearch());
-        } else {
-            log.info("data search not found");
-        }
+        DataTransferController dataTransferController = DataTransferController.getInstance();
+        dataTransferController.selectedBtnForecast();
+        txt_city.setText(dataTransferController.getDataInput());
     }
 
     @FXML

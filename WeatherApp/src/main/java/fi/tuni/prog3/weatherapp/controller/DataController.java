@@ -27,6 +27,9 @@ public class DataController implements Initializable {
         series.getData().add(new XYChart.Data<>("04.02", 17));
 
         lineChart.getData().add(series);
+
+        DataTransferController dataTransferController = DataTransferController.getInstance();
+        dataTransferController.selectedBtnData();
     }
 
 }
