@@ -24,7 +24,7 @@ public class MainViewController implements Initializable {
 
     @FXML
     @Getter
-    private AnchorPane contentId;
+    private AnchorPane content;
 
     @FXML
     private Button btnForecast, btnData, btnHome, btnSetting;
@@ -32,61 +32,36 @@ public class MainViewController implements Initializable {
     @Autowired
     private FxWeaver fxWeaver;
 
+    private final DataTransferController dataTransferController = DataTransferController.getInstance();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Platform.runLater(this::initMainView);
+        dataTransferController.initialize(fxWeaver, content, btnHome, btnData, btnForecast, btnSetting);
 
-//        Set button menu
-        DataTransferController dataTransferController = DataTransferController.getInstance();
-        dataTransferController.setBtnForecast(btnForecast);
-        dataTransferController.setBtnData(btnData);
-        dataTransferController.setBtnHome(btnHome);
-        dataTransferController.setBtnSetting(btnSetting);
+        Platform.runLater(this::initMainView);
     }
 
     private void initMainView() {
-        loadLayout(HomeController.class, btnHome);
+        dataTransferController.loadLayout(HomeController.class);
     }
 
     @FXML
     void loadHomeLayout(ActionEvent event) {
-        loadLayout(HomeController.class, btnHome);
+        dataTransferController.loadLayout(HomeController.class);
     }
 
     @FXML
     void loadDataLayout(ActionEvent event) {
-        loadLayout(DataController.class, btnData);
+        dataTransferController.loadLayout(DataController.class);
     }
 
     @FXML
     void loadForecastLayout(ActionEvent event) {
-        loadLayout(ForecastController.class, btnForecast);
+        dataTransferController.loadLayout(ForecastController.class);
     }
 
     @FXML
     void loadSettingLayout(ActionEvent event) {
-        loadLayout(SettingController.class, btnSetting);
+        dataTransferController.loadLayout(SettingController.class);
     }
-
-    private void loadLayout(Class<?> controllerClass, Button selectedButton) {
-        Parent root = fxWeaver.loadView(controllerClass);
-        if (root == null) {
-            log.error("Failed to load view for {}", controllerClass.getSimpleName());
-            return;
-        }
-        contentId.getChildren().clear();
-        contentId.getChildren().setAll(root);
-        selectButton(selectedButton);
-    }
-
-    private void selectButton(Button selectedButton) {
-//        Reset style all menu button
-        btnHome.setStyle("-fx-background-color: #6a6a6a; -fx-text-fill: white;");
-        btnData.setStyle("-fx-background-color: #6a6a6a; -fx-text-fill: white;");
-        btnForecast.setStyle("-fx-background-color: #6a6a6a; -fx-text-fill: white;");
-        btnSetting.setStyle("-fx-background-color: #6a6a6a; -fx-text-fill: white;");
-//        Set style for selected menu button
-        selectedButton.setStyle("-fx-background-color: #2b2b2b; -fx-text-fill: white;");
-    }
-
 }

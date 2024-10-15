@@ -37,10 +37,10 @@ public class ForecastController implements Initializable {
     @FXML
     private Label txt_city;
 
+    private final DataTransferController dataTransferController = DataTransferController.getInstance();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        DataTransferController dataTransferController = DataTransferController.getInstance();
-        dataTransferController.selectedBtnForecast();
         txt_city.setText(dataTransferController.getDataInput());
     }
 

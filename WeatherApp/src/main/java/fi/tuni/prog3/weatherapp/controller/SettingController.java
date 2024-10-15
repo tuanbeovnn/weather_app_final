@@ -44,6 +44,8 @@ public class SettingController implements Initializable {
 
     private Map<Integer, String> activitiesMap;
 
+    private final DataTransferController dataTransferController = DataTransferController.getInstance();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 //        Hard code
@@ -57,9 +59,6 @@ public class SettingController implements Initializable {
         checkBoxPrecipitation.setSelected(true);
         checkBoxTemperature.setSelected(false);
         checkBoxWindspeed.setSelected(true);
-
-        DataTransferController dataTransferController = DataTransferController.getInstance();
-        dataTransferController.selectedBtnSetting();
     }
 
     @FXML
@@ -84,8 +83,6 @@ public class SettingController implements Initializable {
         log.info("To date: " + toDate);
         log.info("Activities: " + selectedActivity);
 
-        Parent root = fxWeaver.loadView(HomeController.class);
-        mainViewController.getContentId().getChildren().clear();
-        mainViewController.getContentId().getChildren().setAll(root);
+        dataTransferController.loadLayout(HomeController.class);
     }
 }

@@ -16,6 +16,8 @@ public class DataController implements Initializable {
     @FXML
     private LineChart<String, Number> lineChart;
 
+    private final DataTransferController dataTransferController = DataTransferController.getInstance();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         XYChart.Series<String, Number> series = new XYChart.Series<>();
@@ -27,9 +29,6 @@ public class DataController implements Initializable {
         series.getData().add(new XYChart.Data<>("04.02", 17));
 
         lineChart.getData().add(series);
-
-        DataTransferController dataTransferController = DataTransferController.getInstance();
-        dataTransferController.selectedBtnData();
     }
 
 }

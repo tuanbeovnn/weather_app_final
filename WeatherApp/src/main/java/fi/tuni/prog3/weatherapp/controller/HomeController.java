@@ -4,14 +4,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import net.rgielen.fxweaver.core.FxWeaver;
 import net.rgielen.fxweaver.core.FxmlView;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
@@ -28,16 +25,10 @@ public class HomeController implements Initializable {
     @Getter
     private TextField inputSearch;
 
-    @Autowired
-    private FxWeaver fxWeaver;
-
-    @Autowired
-    private MainViewController mainViewController;
+    private final DataTransferController dataTransferController = DataTransferController.getInstance();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        DataTransferController dataTransferController = DataTransferController.getInstance();
-        dataTransferController.selectedBtnHome();
         if (dataTransferController.getDataInput() != null) {
             log.info("data search found");
             inputSearch.setText(dataTransferController.getDataInput());
@@ -48,12 +39,8 @@ public class HomeController implements Initializable {
 
     @FXML
     void search(ActionEvent event){
-        DataTransferController dataTransferController = DataTransferController.getInstance();
         dataTransferController.setDataInput(inputSearch.getText());
-
-        Parent root = fxWeaver.loadView(ForecastController.class);
-        mainViewController.getContentId().getChildren().clear();
-        mainViewController.getContentId().getChildren().setAll(root);
+        dataTransferController.loadLayout(ForecastController.class);
     }
 
 }

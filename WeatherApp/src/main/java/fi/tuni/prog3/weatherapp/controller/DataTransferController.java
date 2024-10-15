@@ -1,11 +1,16 @@
 package fi.tuni.prog3.weatherapp.controller;
 
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import net.rgielen.fxweaver.core.FxWeaver;
 import org.springframework.stereotype.Component;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Setter
 @Getter
@@ -21,6 +26,10 @@ public class DataTransferController {
     private Button btnHome;
     private Button btnSetting;
 
+    private FxWeaver fxWeaver;
+
+    private final Map<Class<?>, Button> controllerButtonMap = new HashMap<>();
+
     private DataTransferController() {}
 
     public static synchronized DataTransferController getInstance() {
@@ -30,24 +39,40 @@ public class DataTransferController {
         return instance;
     }
 
-    public void selectedBtnHome(){
-        resetButtonFunction();
-        btnHome.setStyle("-fx-background-color: #2b2b2b; -fx-text-fill: white;");
+    public void initialize(FxWeaver fxWeaver,AnchorPane content, Button btnHome, Button btnData, Button btnForecast, Button btnSetting) {
+        this.fxWeaver = fxWeaver;
+        this.content = content;
+        this.btnHome = btnHome;
+        this.btnData = btnData;
+        this.btnForecast = btnForecast;
+        this.btnSetting = btnSetting;
+
+//         Mapping controller match button
+        controllerButtonMap.put(HomeController.class, btnHome);
+        controllerButtonMap.put(DataController.class, btnData);
+        controllerButtonMap.put(ForecastController.class, btnForecast);
+        controllerButtonMap.put(SettingController.class, btnSetting);
     }
 
-    public void selectedBtnData(){
-        resetButtonFunction();
-        btnData.setStyle("-fx-background-color: #2b2b2b; -fx-text-fill: white;");
-    }
+    public void loadLayout(Class<?> controllerClass) {
+        if (fxWeaver == null) {
+            log.error("FxWeaver is not initialized.");
+            return;
+        }
+        Parent root = fxWeaver.loadView(controllerClass);
+        if (root == null) {
+            log.error("Failed to load view for {}", controllerClass.getSimpleName());
+            return;
+        }
+        content.getChildren().clear();
+        content.getChildren().setAll(root);
 
-    public void selectedBtnForecast(){
+//      Set style selected button menu
+        Button selectedButton = controllerButtonMap.get(controllerClass);
         resetButtonFunction();
-        btnForecast.setStyle("-fx-background-color: #2b2b2b; -fx-text-fill: white;");
-    }
-
-    public void selectedBtnSetting(){
-        resetButtonFunction();
-        btnSetting.setStyle("-fx-background-color: #2b2b2b; -fx-text-fill: white;");
+        if (selectedButton != null) {
+            selectedButton.setStyle("-fx-background-color: #2b2b2b; -fx-text-fill: white;");
+        }
     }
 
     private void resetButtonFunction() {
