@@ -8,7 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import net.rgielen.fxweaver.core.FxWeaver;
 import net.rgielen.fxweaver.core.FxmlView;
@@ -32,10 +31,6 @@ public class MainViewController implements Initializable {
 
     @Autowired
     private FxWeaver fxWeaver;
-
-    @Setter
-    @Getter
-    private String dataSearch;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

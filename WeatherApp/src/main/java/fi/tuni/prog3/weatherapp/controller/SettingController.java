@@ -32,25 +32,16 @@ public class SettingController implements Initializable {
     private Button btnSave;
 
     @FXML
-    private DatePicker fromDatePicker;
+    private DatePicker fromDatePicker, toDatePicker;
 
     @FXML
-    private DatePicker toDatePicker;
-
-    @FXML
-    private CheckBox checkBoxPrecipitation;
-
-    @FXML
-    private CheckBox checkBoxTemperature;
-
-    @FXML
-    private CheckBox checkBoxWindspeed;
+    private CheckBox checkBoxPrecipitation, checkBoxTemperature, checkBoxWindspeed;
 
     @Autowired
     private FxWeaver fxWeaver;
 
     @Autowired
-    IDataService dataService;
+    private IDataService dataService;
 
     @Autowired
     private MainViewController mainViewController;

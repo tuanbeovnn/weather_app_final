@@ -40,7 +40,7 @@ public class ForecastController implements Initializable {
     private Label txt_city;
 
     @Autowired
-    IHomeService homeService;
+    private IHomeService homeService;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
