@@ -15,7 +15,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #e6e6e6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fi.tuni.prog3.weatherapp.controller.ForecastController">
    <children>
-      <AnchorPane layoutX="14.0" layoutY="16.0" prefHeight="50.0" prefWidth="570.0" style="-fx-background-radius: 10px;" styleClass="componentDetailForecast" stylesheets="@../css/main.css">
+      <AnchorPane layoutX="14.0" layoutY="16.0" prefHeight="50.0" prefWidth="570.0" style="-fx-background-radius: 10px;" styleClass="componentDetailForecast" stylesheets="@css/main.css">
          <children>
             <Label fx:id="txt_city" layoutX="32.0" layoutY="3.0" text="Tampere">
                <font>
@@ -29,17 +29,17 @@
             </Label>
             <ImageView fx:id="btn_add_favorite" fitHeight="30.0" fitWidth="30.0" layoutX="526.0" layoutY="11.0" onMouseClicked="#addFavorite" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
                <image>
-                  <Image url="@../images/icon/added_favorite.png" />
+                  <Image url="@images/icon/added_favorite.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="20.0" fitWidth="25.0" layoutX="4.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/icon/placeholder.png" />
+                  <Image url="@images/icon/placeholder.png" />
                </image>
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="14.0" layoutY="80.0" prefHeight="202.0" prefWidth="257.0" style="-fx-background-radius: 10px;" styleClass="componentDetailForecast" stylesheets="@../css/main.css">
+      <AnchorPane layoutX="14.0" layoutY="80.0" prefHeight="202.0" prefWidth="257.0" style="-fx-background-radius: 10px;" styleClass="componentDetailForecast" stylesheets="@css/main.css">
          <children>
             <Label fx:id="headerTemp" alignment="CENTER" layoutY="50.6" prefHeight="100.0" prefWidth="236.0" text="25°C" AnchorPane.bottomAnchor="57.400000000000006" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.6">
                <font>
@@ -48,7 +48,7 @@
             </Label>
             <ImageView fx:id="headerIcon" fitHeight="25.0" fitWidth="25.0" layoutX="11.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/weather-status/sunny.png" />
+                  <Image url="@images/weather-status/sunny.png" />
                </image>
             </ImageView>
             <Label fx:id="headerStatDesc" layoutX="45.0" layoutY="10.0" prefHeight="30.0" prefWidth="154.0" text="Day 26° • Night 11°" />
@@ -60,7 +60,7 @@
             <Label fx:id="current_id" disable="true" layoutX="209.0" layoutY="16.0" text="id" textFill="RED" visible="false" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="286.0" layoutY="80.0" prefHeight="280.0" prefWidth="300.0" style="-fx-background-radius: 10px;" styleClass="componentDetailForecast" stylesheets="@../css/main.css">
+      <AnchorPane layoutX="286.0" layoutY="80.0" prefHeight="280.0" prefWidth="300.0" style="-fx-background-radius: 10px;" styleClass="componentDetailForecast" stylesheets="@css/main.css">
          <children>
             <VBox alignment="CENTER_LEFT" prefHeight="280.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -68,7 +68,7 @@
                      <children>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/icon/temp.png" />
+                              <Image url="@images/icon/temp.png" />
                            </image>
                            <HBox.margin>
                               <Insets left="10.0" />
@@ -95,7 +95,7 @@
                      <children>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/icon/hum.png" />
+                              <Image url="@images/icon/hum.png" />
                            </image>
                            <HBox.margin>
                               <Insets left="10.0" />
@@ -122,7 +122,7 @@
                      <children>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/icon/press.png" />
+                              <Image url="@images/icon/press.png" />
                            </image>
                            <HBox.margin>
                               <Insets left="10.0" />
@@ -149,7 +149,7 @@
                      <children>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/icon/vis.png" />
+                              <Image url="@images/icon/vis.png" />
                            </image>
                            <HBox.margin>
                               <Insets left="10.0" />
@@ -176,7 +176,7 @@
                      <children>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/icon/winds-weather-symbol.png" />
+                              <Image url="@images/icon/winds-weather-symbol.png" />
                            </image>
                            <HBox.margin>
                               <Insets left="10.0" />
@@ -198,11 +198,11 @@
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="148.0" layoutY="289.0" prefHeight="70.0" prefWidth="123.0" style="-fx-background-radius: 10px;" styleClass="componentDetailForecast" stylesheets="@../css/main.css">
+      <AnchorPane layoutX="148.0" layoutY="289.0" prefHeight="70.0" prefWidth="123.0" style="-fx-background-radius: 10px;" styleClass="componentDetailForecast" stylesheets="@css/main.css">
          <children>
             <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="15.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/icon/moonp.png" />
+                  <Image url="@images/icon/moonp.png" />
                </image>
             </ImageView>
             <Label layoutX="55.0" layoutY="13.0" prefHeight="20.0" prefWidth="55.0" text="Sun Set">
@@ -217,11 +217,11 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="14.0" layoutY="289.0" prefHeight="70.0" prefWidth="123.0" style="-fx-background-radius: 10px;" styleClass="componentDetailForecast" stylesheets="@../css/main.css">
+      <AnchorPane layoutX="14.0" layoutY="289.0" prefHeight="70.0" prefWidth="123.0" style="-fx-background-radius: 10px;" styleClass="componentDetailForecast" stylesheets="@css/main.css">
          <children>
             <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="11.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/icon/sunrise.png" />
+                  <Image url="@images/icon/sunrise.png" />
                </image>
             </ImageView>
             <Label layoutX="55.0" layoutY="13.0" prefHeight="20.0" prefWidth="55.0" text="Sun Rise">
@@ -252,7 +252,7 @@
                <children>
                   <ImageView fx:id="iconForecast1" fitHeight="73.0" fitWidth="74.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/weather-status/overcast.png" />
+                        <Image url="@images/weather-status/overcast.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="highLowForecast1" alignment="CENTER" layoutY="112.0" prefHeight="20.0" prefWidth="112.0" text="32 / 23°C" textAlignment="CENTER">
@@ -279,7 +279,7 @@
                <children>
                   <ImageView fx:id="iconForecast2" fitHeight="73.0" fitWidth="74.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/weather-status/fog.png" />
+                        <Image url="@images/weather-status/fog.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="highLowForecast2" alignment="CENTER" layoutY="112.0" prefHeight="20.0" prefWidth="112.0" text="32 / 23°C" textAlignment="CENTER">
@@ -306,7 +306,7 @@
                <children>
                   <ImageView fx:id="iconForecast3" fitHeight="73.0" fitWidth="74.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/weather-status/rain.png" />
+                        <Image url="@images/weather-status/rain.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="highLowForecast3" alignment="CENTER" layoutY="112.0" prefHeight="20.0" prefWidth="112.0" text="32 / 23°C" textAlignment="CENTER">
@@ -333,7 +333,7 @@
                <children>
                   <ImageView fx:id="iconForecast4" fitHeight="73.0" fitWidth="74.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/weather-status/storm.png" />
+                        <Image url="@images/weather-status/storm.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="highLowForecast4" alignment="CENTER" layoutY="112.0" prefHeight="20.0" prefWidth="112.0" text="32 / 23°C" textAlignment="CENTER">
@@ -360,7 +360,7 @@
                <children>
                   <ImageView fx:id="iconForecast5" fitHeight="73.0" fitWidth="74.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/weather-status/partly-cloudy.png" />
+                        <Image url="@images/weather-status/partly-cloudy.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="highLowForecast5" alignment="CENTER" layoutY="112.0" prefHeight="20.0" prefWidth="112.0" text="32 / 23°C" textAlignment="CENTER">

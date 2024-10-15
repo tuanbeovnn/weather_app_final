@@ -1,9 +1,8 @@
 package fi.tuni.prog3.weatherapp.controller;
 
-import fi.tuni.prog3.weatherapp.util.Constants;
+import fi.tuni.prog3.weatherapp.service.IDataService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -11,10 +10,11 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import lombok.extern.slf4j.Slf4j;
+import net.rgielen.fxweaver.core.FxWeaver;
 import net.rgielen.fxweaver.core.FxmlView;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 
 @Slf4j
 @Component
-@FxmlView ("/views/SettingLayout.fxml")
+@FxmlView ("/SettingLayout.fxml")
 public class SettingController implements Initializable {
     @FXML
     private ComboBox<String> activitiesComboBox;
@@ -45,6 +45,15 @@ public class SettingController implements Initializable {
 
     @FXML
     private CheckBox checkBoxWindspeed;
+
+    @Autowired
+    private FxWeaver fxWeaver;
+
+    @Autowired
+    IDataService dataService;
+
+    @Autowired
+    private MainViewController mainViewController;
 
     private Map<Integer, String> activitiesMap;
 
@@ -85,16 +94,8 @@ public class SettingController implements Initializable {
         log.info("To date: " + toDate);
         log.info("Activities: " + selectedActivity);
 
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(Constants.HOME_LAYOUT));
-            Parent view = loader.load();
-
-            MainViewController mainViewController = MainViewController.getInstance();
-            mainViewController.selectButton(mainViewController.getBtnHome());
-            mainViewController.getContentId().getChildren().clear();
-            mainViewController.getContentId().getChildren().add(view);
-        } catch (IOException e) {
-            log.error("Failed to load view: {}", Constants.HOME_LAYOUT);
-        }
+        Parent root = fxWeaver.loadView(HomeController.class);
+        mainViewController.getContentId().getChildren().clear();
+        mainViewController.getContentId().getChildren().setAll(root);
     }
 }

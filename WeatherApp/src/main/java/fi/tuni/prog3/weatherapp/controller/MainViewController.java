@@ -1,10 +1,8 @@
 package fi.tuni.prog3.weatherapp.controller;
 
-import fi.tuni.prog3.weatherapp.util.Constants;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -12,10 +10,11 @@ import javafx.scene.layout.AnchorPane;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import net.rgielen.fxweaver.core.FxWeaver;
 import net.rgielen.fxweaver.core.FxmlView;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -23,26 +22,20 @@ import java.util.ResourceBundle;
 @FxmlView("/MainView.fxml")
 @Slf4j
 public class MainViewController implements Initializable {
-    @Getter
-    private static MainViewController instance;
 
     @FXML
     @Getter
     private AnchorPane contentId;
 
     @FXML
-    @Getter
     private Button btnForecast, btnData, btnHome, btnSetting;
+
+    @Autowired
+    private FxWeaver fxWeaver;
 
     @Setter
     @Getter
-    private String search;
-
-    private boolean isHomeLayoutLoaded = false;
-
-    public MainViewController() {
-        instance = this;
-    }
+    private String dataSearch;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -51,55 +44,49 @@ public class MainViewController implements Initializable {
     }
 
     private void initMainView() {
-        if (!isHomeLayoutLoaded) {
-            loadLayout(Constants.HOME_LAYOUT, btnHome);
-            isHomeLayoutLoaded = true;
-        }
+        loadLayout(HomeController.class, btnHome);
     }
 
     @FXML
     void loadHomeLayout(ActionEvent event) {
-        loadLayout(Constants.HOME_LAYOUT, btnHome);
+        loadLayout(HomeController.class, btnHome);
     }
 
     @FXML
     void loadDataLayout(ActionEvent event) {
-        loadLayout(Constants.DATA_LAYOUT, btnData);
+        loadLayout(DataController.class, btnData);
     }
 
     @FXML
     void loadForecastLayout(ActionEvent event) {
-        loadLayout(Constants.FORECAST_LAYOUT, btnForecast);
+        loadLayout(ForecastController.class, btnForecast);
     }
 
     @FXML
     void loadSettingLayout(ActionEvent event) {
-        loadLayout(Constants.SETTING_LAYOUT, btnSetting);
+        loadLayout(SettingController.class, btnSetting);
     }
 
-    private void loadLayout(String viewPath, Button selectedButton) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(viewPath));
-            Parent view = loader.load();
-            contentId.getChildren().clear();
-            contentId.getChildren().setAll(view);
-        } catch (IOException e) {
-            log.error("Failed to load view: {}", viewPath);
+    private void loadLayout(Class<?> controllerClass, Button selectedButton) {
+        Parent root = fxWeaver.loadView(controllerClass);
+        if (root == null) {
+            log.error("Failed to load view for {}", controllerClass.getSimpleName());
+            return;
         }
-        this.selectButton(selectedButton);
+        contentId.getChildren().clear();
+        contentId.getChildren().setAll(root);
+        selectButton(selectedButton);
     }
 
-    public void selectButton(Button selectedButton) {
+    private void selectButton(Button selectedButton) {
         resetButtonStyles();
         selectedButton.setStyle("-fx-background-color: #2b2b2b; -fx-text-fill: white;");
     }
 
-    public void resetButtonStyles() {
-//        Set default color
+    private void resetButtonStyles() {
         btnHome.setStyle("-fx-background-color: #6a6a6a; -fx-text-fill: white;");
         btnData.setStyle("-fx-background-color: #6a6a6a; -fx-text-fill: white;");
         btnForecast.setStyle("-fx-background-color: #6a6a6a; -fx-text-fill: white;");
         btnSetting.setStyle("-fx-background-color: #6a6a6a; -fx-text-fill: white;");
     }
-
 }

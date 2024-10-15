@@ -1,5 +1,6 @@
 package fi.tuni.prog3.weatherapp.controller;
 
+import fi.tuni.prog3.weatherapp.service.IHomeService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -7,13 +8,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import lombok.extern.slf4j.Slf4j;
 import net.rgielen.fxweaver.core.FxmlView;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 @Slf4j
-@FxmlView("/views/ForecastLayout.fxml")
+@FxmlView("/ForecastLayout.fxml")
 @Component
 public class ForecastController implements Initializable {
     @FXML
@@ -37,22 +39,17 @@ public class ForecastController implements Initializable {
     @FXML
     private Label txt_city;
 
-    private final MainViewController mainViewController = MainViewController.getInstance();
+    @Autowired
+    IHomeService homeService;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if (mainViewController.getSearch() != null) {
-            log.info("search found");
-            txt_city.setText(mainViewController.getSearch());
+        if (homeService.getDataSearch() != null) {
+            log.info("data search found");
+            txt_city.setText(homeService.getDataSearch());
         } else {
-            log.info("search not found");
+            log.info("data search not found");
         }
-    }
-
-    public void setSearchText(String searchText) {
-//        Set value search to MainViewController
-        mainViewController.setSearch(searchText);
-        txt_city.setText(searchText);
     }
 
     @FXML

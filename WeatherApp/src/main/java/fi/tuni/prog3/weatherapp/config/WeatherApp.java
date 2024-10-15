@@ -1,6 +1,7 @@
 package fi.tuni.prog3.weatherapp.config;
 
 import fi.tuni.prog3.weatherapp.WeatherSystemApplication;
+import fi.tuni.prog3.weatherapp.controller.HomeController;
 import fi.tuni.prog3.weatherapp.controller.MainViewController;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -33,6 +34,9 @@ public class WeatherApp extends Application {
         try {
             FxWeaver fxWeaver = applicationContext.getBean(FxWeaver.class);
             Parent root = fxWeaver.loadView(MainViewController.class);
+            if (root == null) {
+                throw new IllegalStateException("Root cannot be null");
+            }
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.setTitle("Weather App");

@@ -1,18 +1,18 @@
 module fi.tuni.progthree.weatherapp {
     requires spring.core;
     requires spring.beans;
-    requires java.sql;
-    requires lombok;
-    requires javafx.controls;
-    requires com.google.gson;
+    requires spring.boot;
     requires spring.boot.autoconfigure;
+    requires spring.context;
+    requires javafx.controls;
+    requires javafx.fxml;
     requires net.rgielen.fxweaver.core;
     requires org.slf4j;
-    requires spring.boot;
-    requires spring.context;
-    requires javafx.fxml;
     requires spring.webflux;
     requires spring.web;
+    requires java.sql;
+    requires lombok;
+    requires com.google.gson;
     requires org.apache.commons.lang3;
     requires org.hibernate.orm.core;
     requires spring.data.commons;
@@ -21,20 +21,15 @@ module fi.tuni.progthree.weatherapp {
     requires io.hypersistence.utils.hibernate.type;
     requires reactor.core;
     requires java.annotation;
+
+    opens fi.tuni.prog3.weatherapp to spring.core, spring.beans, spring.context;
+    opens fi.tuni.prog3.weatherapp.controller to spring.core, spring.beans, javafx.fxml;
+    opens fi.tuni.prog3.weatherapp.config to spring.core, spring.beans;
+    opens fi.tuni.prog3.weatherapp.service to spring.core, spring.beans;
+
     exports fi.tuni.prog3.weatherapp;
     exports fi.tuni.prog3.weatherapp.controller;
     exports fi.tuni.prog3.weatherapp.config;
-//    exports fi.tuni.prog3.weatherapp.util;
-//    exports fi.tuni.prog3.weatherapp.weatherapi;
-//    exports fi.tuni.prog3.weatherapp.service;
-    opens fi.tuni.prog3.weatherapp.controller;
-    opens fi.tuni.prog3.weatherapp;
-//    opens fi.tuni.prog3.weatherapp.service;
-//    opens fi.tuni.prog3.weatherapp.entity;
-    opens fi.tuni.prog3.weatherapp.config;
-//    exports fi.tuni.prog3.weatherapp.service.impl;
-//    opens fi.tuni.prog3.weatherapp.service.impl;
-//    exports fi.tuni.prog3.weatherapp.dto;
-//    exports fi.tuni.prog3.weatherapp.repository;
-//    opens fi.tuni.prog3.weatherapp.dto;
+    exports fi.tuni.prog3.weatherapp.service;
+    exports fi.tuni.prog3.weatherapp.service.impl;
 }

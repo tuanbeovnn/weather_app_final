@@ -1,25 +1,25 @@
 package fi.tuni.prog3.weatherapp.controller;
 
-import fi.tuni.prog3.weatherapp.util.Constants;
+import fi.tuni.prog3.weatherapp.service.IHomeService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import lombok.extern.slf4j.Slf4j;
+import net.rgielen.fxweaver.core.FxWeaver;
 import net.rgielen.fxweaver.core.FxmlView;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 @Slf4j
 @Component
-@FxmlView("/views/HomeLayout.fxml")
+@FxmlView("/HomeLayout.fxml")
 public class HomeController implements Initializable {
     @FXML
     private Button btnSearch;
@@ -27,35 +27,32 @@ public class HomeController implements Initializable {
     @FXML
     private TextField inputSearch;
 
-    private final MainViewController mainViewController = MainViewController.getInstance();
+    @Autowired
+    private FxWeaver fxWeaver;
+
+    @Autowired
+    private IHomeService homeService;
+
+    @Autowired
+    private MainViewController mainViewController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if (mainViewController.getSearch() != null) {
-            log.info("search found");
-            inputSearch.setText(mainViewController.getSearch());
+        if (homeService.getDataSearch() != null) {
+            log.info("data search found");
+            inputSearch.setText(homeService.getDataSearch());
         } else {
-            log.info("search not found");
+            log.info("data search not found");
         }
     }
 
     @FXML
     void search(ActionEvent event){
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(Constants.FORECAST_LAYOUT));
-            Parent view = loader.load();
+        homeService.setDataSearch(inputSearch.getText());
 
-            ForecastController controller = loader.getController();
-            controller.setSearchText(inputSearch.getText());
-
-            mainViewController.selectButton(mainViewController.getBtnForecast());
-            mainViewController.getContentId().getChildren().clear();
-            mainViewController.getContentId().getChildren().add(view);
-        } catch (IOException e) {
-            log.error("Failed to load view: {}", Constants.FORECAST_LAYOUT);
-        }
+        Parent root = fxWeaver.loadView(ForecastController.class);
+        mainViewController.getContentId().getChildren().clear();
+        mainViewController.getContentId().getChildren().setAll(root);
     }
-
-
 
 }
